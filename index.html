@@ -765,6 +765,58 @@
       .gyro-cursor.hover { transform-origin: center; }
     }
     @media not all and (hover: hover) { .gyro-cursor { display: none; } }
+
+    /* ---------- REFORMER OU LAGREE ---------- */
+    .vs { background: var(--sage); color: var(--offwhite); padding: 120px 72px; }
+    .vs-inner { max-width: 1300px; margin: 0 auto; }
+    .vs-head { text-align: center; max-width: 900px; margin: 0 auto 72px; }
+    .vs h2 { font-family: var(--serif); font-weight: 700; font-size: 64px; line-height: 1.08; letter-spacing: -.01em; }
+    .vs h2 em { font-style: italic; font-weight: 300; }
+    .vs .lead { margin-top: 22px; font-size: 17px; line-height: 1.7; font-weight: 400; }
+
+    .vs-grid { display: grid; grid-template-columns: 1.25fr .85fr; gap: 28px; align-items: stretch; }
+    .vs-card { border-radius: 6px; padding: 48px 44px; position: relative; display: flex; flex-direction: column; overflow: visible; }
+    .vs-card.reformer {
+      background: var(--offwhite); color: var(--ink);
+      box-shadow: 0 40px 70px -35px rgba(35,36,30,.55);
+      transform: translateY(-14px);
+    }
+    .vs-card.lagree { border: 1px solid rgba(241,238,235,.6); color: var(--offwhite); }
+    .vs-badge {
+      position: absolute; top: -16px; left: 44px; z-index: 3;
+      padding: 9px 16px; background: var(--ink); color: var(--offwhite);
+      font-size: 11px; letter-spacing: .22em; text-transform: uppercase; font-weight: 600;
+    }
+    .vs-card h3 { font-family: var(--serif); font-weight: 700; font-size: 44px; line-height: 1; }
+    .vs-card .sub { margin-top: 8px; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; opacity: .8; }
+    .vs-card .desc { margin-top: 22px; font-size: 15.5px; line-height: 1.7; font-weight: 400; }
+    .vs-card ul { list-style: none; margin-top: 28px; display: grid; gap: 14px; }
+    .vs-card li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.55; font-weight: 400; }
+    .vs-card li svg { flex: 0 0 18px; width: 18px; height: 18px; margin-top: 3px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .vs-card.reformer li svg { stroke: var(--sage); }
+    .vs-card .foot { margin-top: auto; padding-top: 32px; }
+    .vs-cta {
+      display: inline-block; padding: 16px 32px; text-decoration: none;
+      font-size: 13px; letter-spacing: .18em; text-transform: uppercase; font-weight: 600;
+      transition: background .3s, color .3s;
+    }
+    .vs-card.reformer .vs-cta { background: var(--sage); color: var(--offwhite); }
+    .vs-card.reformer .vs-cta:hover { background: var(--ink); }
+    .vs-card.lagree .note { font-size: 14px; line-height: 1.6; font-weight: 400; opacity: .9; border-top: 1px solid rgba(241,238,235,.4); padding-top: 20px; }
+
+    .vs-verdict {
+      margin-top: 56px; text-align: center; max-width: 820px; margin-left: auto; margin-right: auto;
+      font-family: var(--serif); font-weight: 300; font-style: italic; font-size: 30px; line-height: 1.3;
+    }
+    .vs-verdict b { font-weight: 700; font-style: normal; }
+
+    @media (max-width: 1100px) { .vs { padding: 90px 40px; } .vs h2 { font-size: 56px; } .vs-card { padding: 40px 32px; } .vs-badge { left: 32px; } }
+    @media (max-width: 860px) {
+      .vs { padding: 72px 24px; } .vs h2 { font-size: 44px; }
+      .vs-grid { grid-template-columns: 1fr; }
+      .vs-card.reformer { transform: none; }
+      .vs-verdict { font-size: 24px; }
+    }
   </style>
 </head>
 <body>
@@ -900,6 +952,47 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="vs" id="reformer-ou-lagree">
+  <div class="vs-inner">
+    <div class="vs-head">
+      <h2>Reformer ou Lagree,<br><em>que choisir ?</em></h2>
+      <p class="lead">Deux méthodes sur machine, deux philosophies. Chez Chacha, on a fait un choix clair. On vous explique pourquoi.</p>
+    </div>
+
+    <div class="vs-grid">
+      <div class="vs-card reformer">
+        <span class="vs-badge">Notre choix</span>
+        <h3>Pilates Reformer</h3>
+        <p class="sub">La méthode originale de Joseph Pilates</p>
+        <p class="desc">Un chariot, des ressorts, et un travail de précision qui renforce en profondeur sans brusquer. Le Reformer construit un corps long, gainé et aligné, séance après séance, quel que soit votre point de départ.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg><span><b>Accessible à tous</b> : débutants, reprise après blessure, grossesse, sportifs confirmés.</span></li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg><span><b>Respectueux du corps</b> : les ressorts guident et protègent les articulations et le dos.</span></li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg><span><b>Progressif</b> : la résistance s'ajuste à votre niveau, vous progressez à votre rythme.</span></li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg><span><b>Résultats durables</b> : posture, souplesse, centre solide et silhouette allongée.</span></li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg><span><b>Esprit posé</b> : respiration, contrôle, concentration. On sort plus fort et plus calme.</span></li>
+        </ul>
+        <div class="foot"><a href="#reformer" class="vs-cta">Découvrir le Reformer</a></div>
+      </div>
+
+      <div class="vs-card lagree">
+        <h3>Lagree</h3>
+        <p class="sub">Méthode fitness sur Megaformer</p>
+        <p class="desc">Créée à Los Angeles dans les années 2000, la méthode Lagree mise sur l'intensité : mouvements très lents, tension musculaire continue et rythme soutenu. Un entraînement efficace, mais pensé pour la performance avant tout.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span>Très intense, orienté brûlure musculaire et cardio.</span></li>
+          <li><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span>Demande une bonne condition physique de départ.</span></li>
+          <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Moins adapté aux débutants, aux douleurs de dos ou à la reprise en douceur.</span></li>
+          <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Peu de place à la respiration, à l'alignement et à l'écoute du corps.</span></li>
+        </ul>
+        <div class="foot"><p class="note">Une méthode qui a ses adeptes, mais qui s'éloigne de l'esprit du Pilates : la précision, le contrôle et le respect du corps.</p></div>
+      </div>
+    </div>
+
+    <p class="vs-verdict">Chez Chacha, on a choisi le <b>Reformer</b> parce qu'on veut que vous progressiez longtemps, pas que vous souffriez vite.</p>
   </div>
 </section>
 
