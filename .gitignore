@@ -1,0 +1,7 @@
+.DS_Store
+.playwright-mcp/
+# vidéos originales (trop lourdes) : seules les versions web sont publiées
+video/reformer/*.MOV
+video/reformer/*.mov
+# dossier brut de la police (les fichiers utilisés sont dans fonts/)
+TAN-Meringue-Font/

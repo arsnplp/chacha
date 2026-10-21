@@ -1,0 +1,1277 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chacha Pilates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    /* TAN Meringue : police de la charte (fichier a deposer dans fonts/) */
+    @font-face {
+      font-family: "TAN Meringue";
+      src: url("fonts/TANMeringue.woff2") format("woff2"),
+           url("fonts/TANMeringue.woff") format("woff"),
+           url("fonts/TANMeringue.otf") format("opentype"),
+           url("fonts/TANMeringue.ttf") format("truetype");
+      font-weight: 300 700; font-style: normal; font-display: swap;
+    }
+    :root {
+      /* Charte officielle Chacha : uniquement ces 3 couleurs */
+      --sage: #9ea286;
+      --rose: #d9b7b5;
+      --offwhite: #f1eeeb;
+      /* texte sombre pour la lisibilite (pas une couleur de marque) */
+      --ink: #23241e;
+      /* alias */
+      --cream: var(--offwhite);
+      --terracotta: var(--sage);
+      --sage-dark: var(--sage);
+      --sage-light: var(--sage);
+      --nav-h: 104px;
+      --serif: "TAN Meringue", "Cormorant Garamond", Georgia, serif;
+      --sans: "Montserrat", "Avenir Next", "Avenir", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      font-weight: 300;
+      color: var(--cream);
+      background: var(--terracotta);
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      overflow: hidden;
+      background: var(--terracotta) url("image/header.png") center / cover no-repeat;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(35,36,30,.18) 0%, rgba(35,36,30,.05) 45%, rgba(35,36,30,0) 70%);
+      pointer-events: none;
+    }
+
+    /* ---------- NAV ---------- */
+    .nav {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 3;
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 72px;
+      font-size: 15px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+    .nav ul { display: flex; gap: 44px; list-style: none; }
+    .nav a { color: var(--cream); text-decoration: none; transition: opacity .25s; }
+    .nav a:hover { opacity: .7; }
+
+    .nav-right { display: flex; align-items: center; gap: 44px; }
+    .currency { display: inline-flex; align-items: center; gap: 12px; cursor: pointer; }
+    .currency svg { width: 14px; height: 14px; }
+    .sep { width: 1px; height: 28px; background: rgba(241,238,235,.75); }
+    .icons { display: flex; align-items: center; gap: 44px; }
+    .icons a { display: inline-flex; align-items: center; gap: 12px; }
+    .icons svg { width: 26px; height: 26px; stroke: var(--cream); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .count { font-size: 17px; letter-spacing: 0; }
+
+    /* ---------- CONTENT ---------- */
+    .hero-inner {
+      position: relative; z-index: 2;
+      min-height: inherit;
+      display: flex; align-items: center;
+      padding: var(--nav-h) 72px 140px;
+    }
+    .brand {
+      display: flex; flex-direction: column; align-items: center;
+      width: 420px;
+      margin-left: 160px;
+      text-align: center;
+    }
+    .brand h1 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: 132px;
+      line-height: .85;
+      letter-spacing: -.01em;
+    }
+    .brand .sub {
+      font-weight: 300;
+      font-size: 42px;
+      letter-spacing: .01em;
+      margin-top: 6px;
+    }
+    .brand .line {
+      width: 80px; height: 1px;
+      background: rgba(241,238,235,.8);
+      margin: 28px 0 24px;
+    }
+    .brand .city {
+      font-weight: 300;
+      font-size: 17px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 16px 52px;
+      border: 1px solid var(--cream);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      transition: background .3s, color .3s;
+    }
+    .btn:hover { background: var(--offwhite); color: var(--ink); }
+
+    .tagline {
+      position: absolute; z-index: 2;
+      right: 100px; top: 48%;
+      transform: translateY(-50%) rotate(-4deg);
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 74px;
+      line-height: 1.05;
+      letter-spacing: .02em;
+      text-align: left;
+      color: rgba(241,238,235,.92);
+      pointer-events: none;
+    }
+    .tagline span { display: block; }
+    .tagline span:nth-child(2) { padding-left: 10px; }
+    .tagline span:nth-child(3) { padding-left: 14px; }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1200px) {
+      .nav { padding: 0 40px; }
+      .hero-inner { padding-left: 40px; padding-right: 40px; }
+      .brand { margin-left: 40px; }
+      .tagline { font-size: 64px; right: 40px; }
+    }
+    @media (max-width: 900px) {
+      :root { --nav-h: 84px; }
+      .nav { padding: 0 24px; font-size: 13px; }
+      .nav ul { display: none; }
+      .nav-right, .icons { gap: 22px; }
+      .hero { background-position: 62% center; }
+      .hero::before { background: linear-gradient(180deg, rgba(35,36,30,.45), rgba(35,36,30,.15) 60%); }
+      .hero-inner { padding: var(--nav-h) 24px 60px; align-items: flex-end; }
+      .brand { width: 100%; margin: 0; }
+      .brand h1 { font-size: 88px; }
+      .brand .sub { font-size: 30px; }
+      .tagline { top: auto; bottom: 8%; right: 16px; transform: none; font-size: 52px; }
+    }
+
+    /* ---------- PHILOSOPHIE ---------- */
+    .philo {
+      background: var(--offwhite);
+      color: var(--ink);
+      padding: 200px 72px 140px;
+    }
+    .philo-grid {
+      max-width: 1400px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 96px; align-items: center;
+    }
+    .philo h2 {
+      font-family: var(--serif);
+      font-weight: 700; font-size: 72px; line-height: .98; letter-spacing: -.01em;
+      color: var(--ink);
+    }
+    .philo h2 em { font-style: italic; color: var(--sage-dark); display: block; }
+    .philo .line { display: block; width: 48px; height: 1px; background: var(--rose); margin: 32px 0 36px; }
+    .philo p { font-weight: 400; font-size: 17px; line-height: 1.75; max-width: 520px; margin-bottom: 22px; color: var(--ink); }
+
+    .carousel {
+      position: relative;
+      width: 100%; max-width: 560px; margin-left: auto;
+      aspect-ratio: 4 / 5;
+      border-radius: 28px; overflow: hidden;
+      background: var(--rose);
+      box-shadow: 0 30px 60px -30px rgba(35,36,30,.25);
+    }
+    .carousel .slide {
+      position: absolute; inset: 0;
+      opacity: 0; transition: opacity .9s ease;
+    }
+    .carousel .slide.active { opacity: 1; }
+    .carousel .slide img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.02); }
+    .carousel::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(35,36,30,.3) 0%, rgba(35,36,30,0) 30%, rgba(35,36,30,0) 60%, rgba(35,36,30,.6) 100%);
+      pointer-events: none;
+    }
+    .carousel .counter {
+      position: absolute; top: 24px; right: 28px; z-index: 2;
+      color: var(--offwhite); font-size: 12px; letter-spacing: .25em;
+    }
+    .carousel .caption {
+      position: absolute; left: 28px; bottom: 28px; z-index: 2;
+      font-family: var(--serif); font-style: italic;
+      font-size: 22px; color: var(--offwhite);
+    }
+    .carousel .arrow {
+      position: absolute; bottom: 24px; z-index: 2;
+      width: 44px; height: 44px;
+      display: grid; place-items: center;
+      border: 1px solid rgba(241,238,235,.7); color: var(--offwhite);
+      background: rgba(35,36,30,.25); backdrop-filter: blur(4px);
+      cursor: pointer; transition: background .3s;
+    }
+    .carousel .arrow:hover { background: var(--offwhite); color: var(--sage-dark); }
+    .carousel .arrow.prev { right: 80px; }
+    .carousel .arrow.next { right: 24px; }
+    .carousel .arrow svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+    .carousel .dots {
+      position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); z-index: 2;
+      display: flex; gap: 10px;
+    }
+    .carousel .dots button {
+      width: 6px; height: 6px; border-radius: 50%; border: 0; padding: 0;
+      background: rgba(241,238,235,.5); cursor: pointer; transition: all .3s;
+    }
+    .carousel .dots button.active { background: var(--rose); transform: scale(1.4); }
+
+    @media (max-width: 1100px) {
+      .philo { padding: 100px 40px; }
+      .philo-grid { gap: 56px; }
+      .philo h2 { font-size: 56px; }
+    }
+    @media (max-width: 900px) {
+      .philo { padding: 80px 24px; }
+      .philo-grid { grid-template-columns: 1fr; }
+      .carousel { margin: 0 auto; }
+      .carousel .caption { display: none; }
+      .carousel .dots { bottom: 90px; }
+    }
+
+
+    /* ---------- COURS (3 cartes + bannière) ---------- */
+    .cours {
+      background: var(--rose);
+      height: 100vh; height: 100svh;
+      padding: 5vh 72px;
+    }
+    .cours-inner {
+      max-width: 1400px; margin: 0 auto; height: 100%;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .cours-grid {
+      flex: 1 1 0; min-height: 0;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .cours-card {
+      position: relative; display: block; overflow: hidden;
+      height: 100%; border-radius: 6px;
+      background: var(--sage); text-decoration: none;
+    }
+    .cours-card img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 1.2s ease;
+    }
+    .cours-card:hover img { transform: scale(1.04); }
+    .cours-card::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(180deg, rgba(35,36,30,0) 55%, rgba(35,36,30,.7) 100%);
+    }
+    .cours-card::before {
+      content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: rgba(158,162,134,.55);
+      opacity: 0; transition: opacity .5s ease;
+    }
+    .cours-card:hover::before { opacity: 1; }
+    /* 1re et 3e carte : voile rose ; carte du milieu : voile vert */
+    .cours-grid .cours-card:nth-child(1)::before,
+    .cours-grid .cours-card:nth-child(3)::before { background: rgba(217,183,181,.6); }
+    .cours-card .label {
+      position: absolute; left: 32px; right: 32px; bottom: 30px; z-index: 2;
+      color: var(--offwhite);
+      transform: translateY(0); transition: transform .5s ease;
+    }
+    .cours-card .label b {
+      display: block;
+      font-family: var(--serif); font-weight: 700;
+      font-size: 34px; line-height: 1;
+    }
+    .cours-card .label p {
+      font-size: 16px; line-height: 1.5; font-weight: 400;
+      max-height: 0; opacity: 0; overflow: hidden;
+      margin-top: 0;
+      transition: max-height .5s ease, opacity .45s ease .1s, margin-top .5s ease;
+    }
+    .cours-card:hover .label p { max-height: 80px; opacity: 1; margin-top: 12px; }
+    .cours-banner {
+      display: block; flex: 0 0 48%; min-height: 0; overflow: hidden;
+      border-radius: 6px; background: var(--rose);
+    }
+    .cours-banner img { width: 100%; height: 100%; object-fit: cover; object-position: left 42%; display: block; }
+
+    @media (max-width: 1100px) {
+      .cours { padding: 4vh 40px; }
+      .cours-grid { gap: 20px; }
+      .cours-card .label { left: 24px; right: 24px; bottom: 22px; }
+      .cours-card .label b { font-size: 28px; }
+    }
+    @media (max-width: 760px) {
+      .cours { height: auto; padding: 40px 24px 80px; }
+      .cours-grid { grid-template-columns: 1fr; flex: none; }
+      .cours-card { aspect-ratio: 3 / 4; height: auto; }
+      .cours-banner { flex: none; aspect-ratio: 4 / 3; }
+      .cours-banner img { object-position: left center; }
+    }
+
+    /* ---------- REFORMER ---------- */
+    .reformer {
+      background: var(--offwhite);
+      color: var(--ink);
+      padding: 140px 72px;
+      overflow: hidden;
+    }
+    .reformer-inner { max-width: 1400px; margin: 0 auto; }
+    .reformer-head {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+    .reformer h2 {
+      font-family: var(--serif); font-weight: 700;
+      font-size: 84px; line-height: .95; letter-spacing: -.01em;
+    }
+    .reformer h2 em { font-style: italic; color: var(--rose); }
+
+    .reformer-body {
+      display: grid; grid-template-columns: 380px 1fr; gap: 72px; align-items: center;
+    }
+    .reformer-points { display: flex; flex-direction: column; gap: 0; }
+    .reformer-points li {
+      list-style: none; padding: 26px 0; border-top: 1px solid var(--rose);
+    }
+    .reformer-points li:last-child { border-bottom: 1px solid var(--rose); }
+    .reformer-points b {
+      display: block; font-family: var(--serif); font-weight: 700;
+      font-size: 28px; line-height: 1.05; margin-bottom: 8px;
+    }
+    .reformer-points p { font-size: 15.5px; line-height: 1.6; font-weight: 400; }
+    .reformer-cta {
+      display: inline-flex; align-items: center; gap: 12px; margin-top: 32px; padding: 16px 28px;
+      line-height: 1.3; text-align: left;
+      background: var(--rose); color: #fff; text-decoration: none;
+      font-size: 14px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      transition: background .3s, color .3s;
+    }
+    .reformer-cta:hover { background: var(--ink); color: var(--offwhite); }
+    .reformer-cta svg { flex: 0 0 auto; width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+
+    /* video carousel */
+    .vcar { position: relative; overflow: hidden; padding: 8px; margin: -8px; }
+    .vcar-track {
+      display: flex; gap: 20px;
+      transition: transform .7s cubic-bezier(.65,0,.35,1);
+      will-change: transform;
+    }
+    .vcar-item {
+      flex: 0 0 calc((100% - 40px) / 3);
+      aspect-ratio: 9 / 16; border-radius: 6px; overflow: hidden;
+      background: var(--sage-light); position: relative;
+      transform: scale(.94); opacity: .55;
+      transition: transform .7s ease, opacity .7s ease;
+    }
+    .vcar-item.active { transform: scale(1); opacity: 1; }
+    .vcar-track.no-anim, .vcar-track.no-anim .vcar-item { transition: none !important; }
+    .vcar-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vcar-nav {
+      display: flex; align-items: center; justify-content: space-between; margin-top: 22px;
+    }
+    .vcar-nav .count { font-family: var(--serif); font-size: 20px; color: var(--ink); }
+    .vcar-nav .count small { font-size: 15px; color: var(--ink); }
+    .vcar-nav .btns { display: flex; gap: 10px; }
+    .vcar-nav button {
+      width: 46px; height: 46px; border: 1px solid var(--rose); background: transparent;
+      color: var(--ink); display: grid; place-items: center; cursor: pointer; transition: all .3s;
+    }
+    .vcar-nav button:hover { background: var(--rose); color: var(--offwhite); }
+    .vcar-nav button svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+
+    @media (max-width: 1200px) {
+      .reformer { padding: 100px 40px; }
+      .reformer h2 { font-size: 64px; }
+      .reformer-body { grid-template-columns: 320px 1fr; gap: 40px; }
+    }
+    @media (max-width: 900px) {
+      .reformer { padding: 80px 24px; }
+      .reformer-body { grid-template-columns: 1fr; }
+      .reformer h2 { font-size: 52px; }
+      .vcar-item { flex-basis: calc((100% - 20px) / 2); }
+    }
+    @media (max-width: 600px) {
+      .vcar-item { flex-basis: 78%; }
+    }
+
+    /* ---------- BÉNÉFICES (aspiration) ---------- */
+    .benef {
+      background: var(--rose);
+      color: var(--ink);
+      padding: 0;
+    }
+    .benef-grid {
+      display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
+    }
+    .benef-photo {
+      position: relative; overflow: hidden; background: var(--sage);
+      min-height: 0;
+    }
+    .benef-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .benef-photo .ph {
+      position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 40px; color: var(--ink);
+      border: 1px dashed rgba(35,36,30,.35); margin: 24px;
+    }
+    .benef-photo .ph b { font-family: var(--serif); font-weight: 700; font-size: 32px; line-height: 1.1; }
+    .benef-photo .ph span { font-size: 14px; margin-top: 10px; max-width: 320px; line-height: 1.5; }
+    .benef-photo.has-img .ph { display: none; }
+    .benef-text {
+      padding: 72px 80px; display: flex; flex-direction: column; justify-content: center;
+    }
+    .benef h2 {
+      font-family: var(--serif); font-weight: 700;
+      font-size: 52px; line-height: .98; letter-spacing: -.01em;
+    }
+    .benef h2 em { font-style: italic; font-weight: 300; }
+    .benef .lead { font-size: 17px; line-height: 1.65; font-weight: 400; margin: 22px 0 34px; max-width: 520px; }
+    .benef-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 36px; }
+    .benef-list li { border-top: 1px solid rgba(35,36,30,.3); padding-top: 14px; }
+    .benef-list b { display: block; font-family: var(--serif); font-weight: 700; font-size: 23px; line-height: 1.05; margin-bottom: 6px; }
+    .benef-list small { display: block; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 6px; }
+    .benef-list p { font-size: 14.5px; line-height: 1.55; font-weight: 400; }
+    .benef-cta {
+      display: inline-block; align-self: flex-start; margin-top: 36px; padding: 15px 34px;
+      background: var(--offwhite); color: var(--ink); text-decoration: none;
+      font-size: 14px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; transition: background .3s, color .3s;
+    }
+    .benef-cta:hover { background: var(--ink); color: var(--offwhite); }
+
+    @media (max-width: 1200px) {
+      .benef-text { padding: 80px 48px; }
+      .benef h2 { font-size: 52px; }
+    }
+    @media (max-width: 900px) {
+      .benef-grid { grid-template-columns: 1fr; }
+      .benef-photo { min-height: 0; aspect-ratio: 4 / 5; }
+      .benef-text { padding: 64px 24px; }
+      .benef h2 { font-size: 44px; }
+      .benef-list { grid-template-columns: 1fr; gap: 22px; }
+    }
+
+    /* ---------- POP-UP INSTAGRAM ---------- */
+    .modal {
+      position: fixed; inset: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+      background: rgba(35,36,30,.72);
+      opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility .35s;
+    }
+    .modal.open { opacity: 1; visibility: visible; }
+    .modal-box {
+      position: relative; width: min(560px, 100%); aspect-ratio: 1080 / 1433; max-height: 88vh;
+      background: var(--offwhite); border-radius: 6px; overflow: hidden;
+      transform: translateY(16px); transition: transform .35s ease;
+      box-shadow: 0 40px 80px -30px rgba(35,36,30,.6);
+    }
+    .modal.open .modal-box { transform: translateY(0); }
+    .islides { position: absolute; inset: 0; }
+    .islides img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #fff; opacity: 0; transition: opacity .4s ease; }
+    .islides img.active { opacity: 1; }
+    .iarrow {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+      width: 42px; height: 42px; border-radius: 50%; border: 0; cursor: pointer;
+      background: rgba(241,238,235,.92); color: var(--ink); display: grid; place-items: center; transition: background .3s;
+    }
+    .iarrow:hover { background: var(--rose); color: #fff; }
+    .iarrow.prev { left: 12px; } .iarrow.next { right: 12px; }
+    .iarrow svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .idots { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 2; display: flex; gap: 7px; }
+    .idots button { width: 7px; height: 7px; border-radius: 50%; border: 0; padding: 0; background: rgba(35,36,30,.3); cursor: pointer; transition: all .3s; }
+    .idots button.active { background: var(--rose); transform: scale(1.4); }
+    .ilink {
+      position: absolute; right: 14px; bottom: 10px; z-index: 2;
+      font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600;
+      color: var(--ink); text-decoration: none; opacity: .7;
+    }
+    .ilink:hover { opacity: 1; }
+    .modal-close {
+      position: fixed; top: 20px; right: 20px; z-index: 2;
+      width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer;
+      background: var(--rose); color: #fff; display: grid; place-items: center;
+      transition: background .3s;
+    }
+    .modal-close:hover { background: var(--ink); }
+    .modal-close svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; }
+    body.modal-lock { overflow: hidden; }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+      background: var(--sage); color: var(--offwhite);
+      padding: 96px 72px 36px;
+    }
+    .footer-inner { max-width: 1400px; margin: 0 auto; }
+    .footer-top {
+      display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 48px;
+      padding-bottom: 64px; border-bottom: 1px solid rgba(241,238,235,.35);
+    }
+    .footer-brand .logo {
+      font-family: var(--serif); font-weight: 300; font-size: 84px; line-height: .9; letter-spacing: -.01em;
+      color: var(--offwhite);
+    }
+    .footer-brand .tag { font-size: 13px; letter-spacing: .22em; text-transform: uppercase; margin-top: 14px; font-weight: 400; }
+    .footer-brand p { margin-top: 26px; max-width: 380px; font-size: 15px; line-height: 1.7; font-weight: 400; }
+    .footer-brand .insta {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 28px;
+      color: var(--offwhite); text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: .08em;
+    }
+    .footer-brand .insta svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+    .footer-brand .insta:hover { text-decoration: underline; text-underline-offset: 6px; }
+
+    .footer h4 {
+      font-family: var(--serif); font-weight: 700; font-size: 24px; margin-bottom: 20px;
+    }
+    .footer-col p, .footer-col a, .footer-col li {
+      font-size: 15px; line-height: 1.75; font-weight: 400; color: var(--offwhite); text-decoration: none;
+    }
+    .footer-col a:hover { text-decoration: underline; text-underline-offset: 5px; }
+    .footer-col ul { list-style: none; }
+    .footer-col .hours { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px dotted rgba(241,238,235,.45); padding: 6px 0; }
+    .footer-col .hours b { font-weight: 600; }
+    .footer-col .note { display: block; margin-top: 14px; font-size: 13px; opacity: .95; }
+
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+      padding-top: 28px; font-size: 13px; font-weight: 400;
+    }
+    .footer-bottom .legal { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-bottom a { color: var(--offwhite); text-decoration: none; }
+    .footer-bottom a:hover { text-decoration: underline; text-underline-offset: 5px; }
+    .footer-bottom .rating { display: inline-flex; align-items: center; gap: 8px; }
+    .footer-bottom .rating svg { width: 14px; height: 14px; fill: var(--offwhite); }
+
+    @media (max-width: 1100px) {
+      .footer { padding: 72px 40px 32px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-brand .logo { font-size: 64px; }
+    }
+    @media (max-width: 640px) {
+      .footer { padding: 56px 24px 28px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ---------- PAGES TEMPORAIRES (Pilates Mat / Yoga) ---------- */
+    .soon {
+      position: relative; overflow: hidden;
+      min-height: 70vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 96px 24px; color: var(--offwhite);
+    }
+    .soon.rose { background: var(--rose); }
+    .soon.sage { background: var(--sage); }
+    .soon .big {
+      font-family: var(--serif); font-weight: 700;
+      font-size: clamp(64px, 13vw, 200px); line-height: .9; letter-spacing: -.02em;
+      margin: 0;
+    }
+    .soon .big em { display: block; font-weight: 300; font-style: italic; font-size: .42em; letter-spacing: 0; margin-top: 18px; }
+    .soon .sub {
+      margin-top: 36px; font-size: 14px; letter-spacing: .26em; text-transform: uppercase; font-weight: 600;
+    }
+    .soon .link {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 28px;
+      padding: 14px 26px; border: 1px solid var(--offwhite); color: var(--offwhite); text-decoration: none;
+      font-size: 13px; letter-spacing: .18em; text-transform: uppercase; font-weight: 600;
+      transition: background .3s, color .3s;
+    }
+    .soon .link:hover { background: var(--offwhite); color: var(--ink); }
+    .soon .link svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+    .soon .ghost {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-style: italic; font-weight: 300;
+      font-size: clamp(200px, 40vw, 640px); color: rgba(241,238,235,.08); pointer-events: none; user-select: none;
+      line-height: 1;
+    }
+
+    /* ---------- BOISSONS (éventail) ---------- */
+    .drinks {
+      background: var(--offwhite); color: var(--ink);
+      padding: 120px 72px 110px; overflow: hidden; text-align: center;
+    }
+    .drinks-inner { max-width: 1200px; margin: 0 auto; }
+    .drinks h2 {
+      font-family: var(--serif); font-weight: 700;
+      font-size: 72px; line-height: .98; letter-spacing: -.01em;
+    }
+    .drinks h2 em { font-style: italic; font-weight: 300; color: var(--sage); }
+    .drinks .lead { max-width: 560px; margin: 22px auto 0; font-size: 17px; line-height: 1.7; font-weight: 400; }
+
+    .fan {
+      position: relative; height: 460px; margin: 16px auto 0; max-width: 900px;
+      perspective: 1200px;
+    }
+    .fan-item {
+      position: absolute; left: 50%; bottom: 0;
+      width: 300px; height: 380px;
+      transform-origin: 50% 100%;
+      transition: transform .8s cubic-bezier(.65,0,.35,1), opacity .8s ease, filter .8s ease;
+      cursor: pointer; will-change: transform;
+    }
+    .fan-item img {
+      width: 100%; height: 100%; object-fit: contain; display: block;
+      filter: drop-shadow(0 30px 40px rgba(35,36,30,.22));
+    }
+    .fan-item.pos-c { transform: translateX(-50%) scale(1.18) rotate(0deg); z-index: 3; }
+    .fan-item.pos-l { transform: translateX(-50%) translateX(-270px) translateY(40px) scale(.86) rotate(-14deg); z-index: 2; opacity: .92; }
+    .fan-item.pos-r { transform: translateX(-50%) translateX(270px) translateY(40px) scale(.86) rotate(14deg); z-index: 2; opacity: .92; }
+    .fan-item.pos-l:hover, .fan-item.pos-r:hover { opacity: 1; }
+    .fan::after {
+      content: ""; position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%);
+      width: 70%; height: 40px; border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(35,36,30,.16), rgba(35,36,30,0) 70%);
+      pointer-events: none;
+    }
+
+    .drinks-caption { margin-top: 36px; min-height: 90px; }
+    .drinks-caption b {
+      display: block; font-family: var(--serif); font-weight: 700; font-size: 38px; line-height: 1;
+      transition: opacity .4s ease;
+    }
+    .drinks-caption p { margin-top: 10px; font-size: 15.5px; line-height: 1.6; font-weight: 400; max-width: 460px; margin-left: auto; margin-right: auto; transition: opacity .4s ease; }
+    .drinks-caption.fade b, .drinks-caption.fade p { opacity: 0; }
+    .drinks-nav { display: flex; justify-content: center; gap: 10px; margin-top: 26px; }
+    .drinks-nav button {
+      width: 46px; height: 46px; border: 1px solid var(--sage); background: transparent;
+      color: var(--ink); display: grid; place-items: center; cursor: pointer; transition: all .3s;
+    }
+    .drinks-nav button:hover { background: var(--sage); color: var(--offwhite); }
+    .drinks-nav button svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+
+    @media (max-width: 1100px) {
+      .drinks { padding: 90px 40px 80px; }
+      .drinks h2 { font-size: 56px; }
+      .fan { height: 440px; }
+      .fan-item { width: 250px; height: 320px; }
+      .fan-item.pos-l { transform: translateX(-50%) translateX(-200px) translateY(36px) scale(.84) rotate(-14deg); }
+      .fan-item.pos-r { transform: translateX(-50%) translateX(200px) translateY(36px) scale(.84) rotate(14deg); }
+    }
+    @media (max-width: 640px) {
+      .drinks { padding: 72px 24px 64px; }
+      .drinks h2 { font-size: 44px; }
+      .fan { height: 360px; }
+      .fan-item { width: 200px; height: 260px; }
+      .fan-item.pos-c { transform: translateX(-50%) scale(1.1); }
+      .fan-item.pos-l { transform: translateX(-50%) translateX(-120px) translateY(40px) scale(.72) rotate(-16deg); }
+      .fan-item.pos-r { transform: translateX(-50%) translateX(120px) translateY(40px) scale(.72) rotate(16deg); }
+      .drinks-caption b { font-size: 30px; }
+    }
+
+    /* chien posé sur le carrousel */
+    .carousel-wrap { position: relative; width: 100%; max-width: 560px; margin-left: auto; }
+    .carousel-wrap .carousel { margin-left: 0; max-width: none; }
+    .carousel-wrap .dog {
+      position: absolute; left: 50%; bottom: calc(100% - 22px); z-index: 4;
+      width: 36%; transform: translateX(-50%);
+      cursor: pointer; filter: drop-shadow(0 14px 18px rgba(35,36,30,.25));
+      transform-origin: 50% 100%;
+    }
+    @media (max-width: 900px) { .carousel-wrap { margin: 0 auto; } .carousel-wrap .dog { width: 44%; } }
+
+    /* bulle du chien */
+    .carousel-wrap .bubble {
+      position: absolute; z-index: 5;
+      right: calc(50% + 70px); bottom: calc(100% + 10px);
+      width: 250px; padding: 14px 18px;
+      background: #fff; color: var(--ink);
+      border-radius: 18px; border-bottom-right-radius: 4px;
+      font-size: 14px; line-height: 1.5; font-weight: 400;
+      box-shadow: 0 10px 24px rgba(35,36,30,.14);
+      min-height: 62px;
+    }
+    .carousel-wrap .bubble::after {
+      content: ""; position: absolute; right: -10px; bottom: 10px;
+      border: 10px solid transparent; border-left-color: #fff; border-bottom: 0;
+      transform: rotate(-20deg);
+    }
+    .carousel-wrap .bubble { cursor: pointer; }
+    .carousel-wrap .bubble .cursor { display: none; }
+    .carousel-wrap .bubble::before {
+      content: "cliquez-moi"; position: absolute; left: 18px; top: -16px;
+      font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); opacity: .55;
+    }
+    .carousel-wrap .bubble.pop { animation: pop .45s cubic-bezier(.3,1.6,.5,1); }
+    @keyframes pop { 0% { transform: scale(.92); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    .carousel-wrap .dog.wiggle { animation: wiggle .5s ease; }
+    @keyframes wiggle {
+      0%   { transform: translateX(-50%) scale(1); }
+      35%  { transform: translateX(-50%) scale(1.12); }
+      65%  { transform: translateX(-50%) scale(.96); }
+      100% { transform: translateX(-50%) scale(1); }
+    }
+    @media (max-width: 900px) {
+      .carousel-wrap .bubble { right: auto; left: 0; bottom: calc(100% + 40px); width: 210px; }
+      .carousel-wrap .bubble::after { right: -10px; }
+    }
+
+    /* ---------- INSTAGRAM ---------- */
+    .insta {
+      background: var(--rose); color: var(--ink);
+      padding: 130px 72px 100px; text-align: center; overflow: hidden; position: relative;
+    }
+    .insta-inner { max-width: 1400px; margin: 0 auto; position: relative; }
+    .insta h2 {
+      font-family: var(--serif); font-weight: 700;
+      font-size: 72px; line-height: .98; letter-spacing: -.01em;
+    }
+    .insta h2 em { font-style: italic; font-weight: 300; color: var(--offwhite); }
+    .insta .lead { max-width: 520px; margin: 20px auto 0; font-size: 17px; line-height: 1.7; font-weight: 400; }
+    .insta-feed {
+      margin-top: 44px; padding: 18px; background: var(--offwhite); border-radius: 6px;
+      box-shadow: 0 30px 60px -30px rgba(35,36,30,.35);
+      min-height: 320px;
+    }
+    .insta .ghost {
+      position: absolute; left: 50%; top: -30px; transform: translateX(-50%);
+      font-family: var(--serif); font-weight: 700; font-size: clamp(120px, 16vw, 240px); line-height: 1;
+      color: rgba(241,238,235,.14); pointer-events: none; user-select: none; white-space: nowrap;
+    }
+    @media (max-width: 1100px) { .insta { padding: 80px 40px; } .insta h2 { font-size: 56px; } }
+    @media (max-width: 640px) { .insta { padding: 64px 24px; } .insta h2 { font-size: 44px; } .insta-feed { padding: 10px; } }
+
+    /* ---------- CURSEUR GYROSCOPE ---------- */
+    @media (hover: hover) and (pointer: fine) {
+      body, body a, body button, body [role="button"], body .cours-card, body .fan-item, body .dog, body .bubble, body .vcar-item { cursor: none !important; }
+      .gyro-cursor {
+        position: fixed; left: 0; top: 0; z-index: 9999; pointer-events: none;
+        width: 26px; height: 26px; will-change: transform;
+        filter: drop-shadow(0 2px 3px rgba(35,36,30,.4));
+        transition: opacity .2s ease;
+      }
+      .gyro-cursor svg { width: 100%; height: 100%; display: block; }
+      .gyro-cursor.hidden { opacity: 0; }
+      .gyro-cursor.hover { transform-origin: center; }
+    }
+    @media not all and (hover: hover) { .gyro-cursor { display: none; } }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <nav class="nav">
+    <ul>
+      <li><a href="#">Nouveautés</a></li>
+      <li><a href="#">Le vestiaire</a></li>
+      <li><a href="#">Gift card</a></li>
+    </ul>
+    <div class="nav-right">
+      <span class="currency">EUR €
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+      <span class="sep"></span>
+      <div class="icons">
+        <a href="#" aria-label="Rechercher">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg>
+        </a>
+        <a href="#" aria-label="Mon compte">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </a>
+        <a href="#" aria-label="Panier">
+          <svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="count">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="hero-inner">
+    <div class="brand">
+      <h1>Chacha</h1>
+      <p class="sub">Pilates studio</p>
+      <span class="line"></span>
+      <p class="city">Aix-en-Provence</p>
+      <a href="#" class="btn">Réserver un cours</a>
+    </div>
+  </div>
+
+  <div class="tagline" aria-hidden="true">
+    <span>Move</span>
+    <span>Breathe</span>
+    <span>Reformer</span>
+  </div>
+</header>
+
+
+<section class="philo" id="studio">
+  <div class="philo-grid">
+    <div class="philo-text">
+      <h2>Plus qu'un studio,<em>une famille.</em></h2>
+      <span class="line"></span>
+      <p>Ici, on ne cherche pas la performance. On cherche le ressenti, le souffle, la précision du geste.</p>
+      <p>Chez Chacha, on respire, on s'allonge, on s'étire. Et surtout, on progresse ensemble, sur Reformer, dans un espace baigné de lumière pensé pour le corps et l'esprit.</p>
+      <p>Le studio, c'est le point de départ. La douceur du lieu et l'énergie du groupe, c'est ce qui fait revenir.</p>
+    </div>
+
+    <div class="carousel-wrap">
+    <img class="dog" src="image/chienaudessus.png" alt="" aria-hidden="true">
+    <div class="bubble" data-bubble aria-live="polite"><span data-bubble-text></span><span class="cursor"></span></div>
+    <div class="carousel" data-carousel>
+      <div class="slide active"><img src="image/img1.png" alt="Devanture du studio Chacha Pilates"></div>
+      <div class="slide"><img src="image/img2.png" alt="Espace d'accueil du studio"></div>
+      <div class="slide"><img src="image/img3.png" alt="Salle de Reformers"></div>
+      <div class="slide"><img src="image/img4.png" alt="Cours collectif sur Reformer"></div>
+      <span class="counter"><span data-current>1</span> / <span data-total>4</span></span>
+      <span class="caption" data-caption>Le studio</span>
+      <div class="dots" data-dots></div>
+      <button class="arrow prev" data-prev aria-label="Précédent"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="arrow next" data-next aria-label="Suivant"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="cours" id="cours">
+  <div class="cours-inner">
+    <div class="cours-grid">
+      <a href="#reformer" class="cours-card">
+        <img src="image/reformer.png" alt="Cours de Reformer">
+        <div class="label"><b>Reformer</b><p>Renforcement profond et précision du geste sur machine, en petit groupe.</p></div>
+      </a>
+      <a href="#pilates-mat" class="cours-card">
+        <img src="image/pilate%20mat.png" alt="Cours de Pilates Mat">
+        <div class="label"><b>Pilates Mat</b><p>Les fondamentaux au sol pour gainer, allonger et mieux ressentir son corps.</p></div>
+      </a>
+      <a href="#yoga" class="cours-card">
+        <img src="image/yog.png" alt="Cours de Yoga">
+        <div class="label"><b>Yoga</b><p>Souffle, mobilité et détente pour relâcher les tensions et retrouver le calme.</p></div>
+      </a>
+    </div>
+    <a href="#boissons" class="cours-banner">
+      <img src="image/boissonbaniere.png" alt="Healthy Drinks Chacha">
+    </a>
+  </div>
+</section>
+
+<section class="reformer" id="reformer">
+  <div class="reformer-inner">
+    <div class="reformer-head">
+      <h2>Le Reformer,<br><em>notre signature.</em></h2>
+    </div>
+
+    <div class="reformer-body">
+      <div>
+        <ul class="reformer-points">
+          <li><b>Cours en petit groupe</b><p>Six Reformers, six élèves maximum. Chaque posture est corrigée, chaque progression est accompagnée.</p></li>
+          <li><b>Pour tous les niveaux</b><p>Du premier cours aux flows avancés, la résistance des ressorts s'adapte à votre corps et à vos objectifs.</p></li>
+          <li><b>Corps gainé, esprit posé</b><p>Cinquante minutes de contrôle, de respiration et d'intensité maîtrisée. On ressort plus fort, plus long, plus léger.</p></li>
+        </ul>
+        <a href="https://www.instagram.com/p/Daxuh0rjCJp/?img_index=1" class="reformer-cta" data-insta-open="https://www.instagram.com/p/Daxuh0rjCJp/embed/">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Les choses à savoir avant ton premier cours
+        </a>
+      </div>
+
+      <div class="vcar" data-vcar>
+        <div class="vcar-track" data-track>
+          <div class="vcar-item"><video src="video/reformer/web/reformer-1.mp4" muted playsinline preload="auto"></video></div>
+          <div class="vcar-item"><video src="video/reformer/web/reformer-2.mp4" muted playsinline preload="auto"></video></div>
+          <div class="vcar-item"><video src="video/reformer/web/reformer-3.mp4" muted playsinline preload="auto"></video></div>
+          <div class="vcar-item"><video src="video/reformer/web/reformer-4.mp4" muted playsinline preload="auto"></video></div>
+        </div>
+        <div class="vcar-nav">
+          <span class="count"><span data-vcur>1</span> <small>/ <span data-vtot>4</span></small></span>
+          <div class="btns">
+            <button data-vprev aria-label="Vidéo précédente"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button data-vnext aria-label="Vidéo suivante"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="benef" id="benefices">
+  <div class="benef-grid">
+    <div class="benef-photo" data-photo>
+      <img src="image/resulatreformer.png" alt="Une femme en pleine forme, posture droite et sereine" onload="this.parentNode.classList.add('has-img')" onerror="this.style.display='none'">
+      <div class="ph">
+        <b>Photo « résultat »</b>
+        <span>Dépose ici une photo d'une femme tonique, posture droite, sourire serein, lumière chaude : enregistre-la sous image/resultat.png et elle s'affichera automatiquement.</span>
+      </div>
+    </div>
+
+    <div class="benef-text">
+      <h2>Laissez celle que vous voulez devenir<br><em>prendre le contrôle.</em></h2>
+      <p class="lead">Elle est déjà là. Celle qui se tient droite, qui respire large, qui entre dans une pièce avec cette assurance tranquille. Chaque séance sur le Reformer lui laisse un peu plus de place. Jusqu'au jour où c'est elle qui décide.</p>
+
+      <ul class="benef-list">
+        <li><small>01</small><b>Elle se tient droite</b><p>Muscles longs et fins, taille dessinée, posture naturellement redressée.</p></li>
+        <li><small>02</small><b>Elle est solide</b><p>Abdominaux profonds et plancher pelvien renforcés, un dos qui ne lâche plus.</p></li>
+        <li><small>03</small><b>Elle a de l'énergie</b><p>Elle sort du studio plus légère, plus mobile, prête à tenir la journée.</p></li>
+        <li><small>04</small><b>Elle est à sa place</b><p>Elle marche plus droit, respire plus large, se sent chez elle dans son corps.</p></li>
+      </ul>
+
+      <a href="#" class="benef-cta">Lui laisser la place</a>
+    </div>
+  </div>
+</section>
+
+<section class="soon sage" id="yoga">
+  <span class="ghost" aria-hidden="true">Y</span>
+  <div>
+    <h2 class="big">Yoga<em>bientôt au studio</em></h2>
+    <p class="sub">Les cours arrivent · suivez l'actualité</p>
+    <a class="link" href="https://www.instagram.com/chachapilates/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @chachapilates
+    </a>
+  </div>
+</section>
+
+<section class="soon rose" id="pilates-mat">
+  <span class="ghost" aria-hidden="true">M</span>
+  <div>
+    <h2 class="big">Pilates Mat<em>bientôt au studio</em></h2>
+    <p class="sub">Les cours arrivent · suivez l'actualité</p>
+    <a class="link" href="https://www.instagram.com/chachapilates/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @chachapilates
+    </a>
+  </div>
+</section>
+
+<section class="drinks" id="boissons">
+  <div class="drinks-inner">
+    <h2>Le coffee shop,<br><em>après l'effort.</em></h2>
+    <p class="lead">Des boissons fraîches, maison et colorées, à savourer au studio avant ou après le cours. Toujours l'ambiance, toujours le sourire.</p>
+
+    <div class="fan" data-fan>
+      <div class="fan-item pos-l" data-name="Ube latte" data-desc="Doux et vanillé, à la patate douce violette des Philippines. Sans caféine, 100 % plaisir.">
+        <img src="image/boissonube.png" alt="Ube latte glacé Chacha">
+      </div>
+      <div class="fan-item pos-c" data-name="Matcha latte" data-desc="Thé vert matcha de cérémonie fouetté, lait d'avoine et glaçons. L'énergie douce qui dure.">
+        <img src="image/boissonmatcha.png" alt="Matcha latte glacé Chacha">
+      </div>
+      <div class="fan-item pos-r" data-name="Café vanille" data-desc="Double espresso, lait froid et sirop de vanille maison. Le coup de boost après la séance.">
+        <img src="image/boissoncafevanillle.png" alt="Café vanille glacé Chacha">
+      </div>
+    </div>
+
+    <div class="drinks-caption" data-caption>
+      <b data-cname>Matcha latte</b>
+      <p data-cdesc>Thé vert matcha de cérémonie fouetté, lait d'avoine et glaçons. L'énergie douce qui dure.</p>
+    </div>
+    <div class="drinks-nav">
+      <button data-fprev aria-label="Boisson précédente"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button data-fnext aria-label="Boisson suivante"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<section class="insta" id="instagram">
+  <span class="ghost" aria-hidden="true">@chachapilates</span>
+  <div class="insta-inner">
+    <h2>Suivez la vie du studio,<br><em>en direct d'Instagram.</em></h2>
+    <p class="lead">Les coulisses, les cours, les boissons du jour et les sourires de la famille Chacha. Rejoignez-nous, on vous attend.</p>
+
+    <div class="insta-feed">
+      <!-- Elfsight Instagram Feed -->
+      <script src="https://elfsightcdn.com/platform.js" async>
+</script>
+      <div class="elfsight-app-2f22e9f3-51b5-4a6f-8d35-cde10e8c020a" data-elfsight-app-lazy></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="contact">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">Chacha</div>
+        <div class="tag">Pilates · Reformer · Yoga · Coffee shop</div>
+        <p>Un studio lumineux à 5 minutes d'Aix-en-Provence, pensé pour le mouvement, le souffle et les moments pour soi. Cours en petits groupes, tous niveaux.</p>
+        <a class="insta" href="https://www.instagram.com/chachapilates/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          @chachapilates
+        </a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Le studio</h4>
+        <p>Les Terrasses du Cellier<br>60 avenue de la Grande Bégude<br>13770 Venelles</p>
+        <p><a href="https://www.google.com/maps/search/?api=1&query=Chacha+pilates+studio+60+avenue+de+la+Grande+B%C3%A9gude+13770+Venelles" target="_blank" rel="noopener">Itinéraire →</a></p>
+        <span class="note">Parking gratuit sur place · Douches</span>
+      </div>
+
+      <div class="footer-col">
+        <h4>Horaires</h4>
+        <ul>
+          <li class="hours"><span>Lundi – Vendredi</span><b>7h30 – 20h30</b></li>
+          <li class="hours"><span>Samedi</span><b>7h30 – 20h30</b></li>
+          <li class="hours"><span>Dimanche</span><b>7h30 – 20h30</b></li>
+        </ul>
+        <span class="note">Ouvert 7j/7 · Coffee shop aux heures d'ouverture</span>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p><a href="tel:+33616709400">06 16 70 94 00</a><br><a href="mailto:chachapilates@gmail.com">chachapilates@gmail.com</a></p>
+        <ul style="margin-top:18px">
+          <li><a href="#cours">Nos cours</a></li>
+          <li><a href="#reformer">Le Reformer</a></li>
+          <li><a href="#">Le planning</a></li>
+          <li><a href="#">Nos cartes</a></li>
+          <li><a href="#">Gift card</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Chacha Pilates Studio · Venelles</span>
+      <span class="rating"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .8-5.2 4.8 1.4 7.1L12 17.8 5.8 21.3l1.4-7.1L2 9.4l7-.8z"/></svg>5/5 sur Google · 41 avis</span>
+      <div class="legal">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">CGV</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="gyro-cursor hidden" id="gyro-cursor" aria-hidden="true">
+  <svg viewBox="0 0 24 24"><path d="M12 2 L21 21 L12 16 L3 21 Z" fill="#d9b7b5" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+</div>
+
+<div class="modal" id="insta-modal" aria-hidden="true" role="dialog" aria-label="Les choses à savoir avant ton premier cours">
+  <button class="modal-close" data-insta-close aria-label="Fermer"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="modal-box">
+    <div class="islides" data-islides>
+      <img src="image/insta/slide-1.jpg" alt="À savoir avant ton premier cours de Reformer, 1 sur 6" class="active">
+      <img src="image/insta/slide-2.jpg" alt="Slide 2 sur 6" loading="lazy">
+      <img src="image/insta/slide-3.jpg" alt="Slide 3 sur 6" loading="lazy">
+      <img src="image/insta/slide-4.jpg" alt="Slide 4 sur 6" loading="lazy">
+      <img src="image/insta/slide-5.jpg" alt="Slide 5 sur 6" loading="lazy">
+      <img src="image/insta/slide-6.jpg" alt="Slide 6 sur 6" loading="lazy">
+    </div>
+    <button class="iarrow prev" data-iprev aria-label="Précédent"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="iarrow next" data-inext aria-label="Suivant"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    <div class="idots" data-idots></div>
+    <a class="ilink" href="https://www.instagram.com/p/Daxuh0rjCJp/" target="_blank" rel="noopener">Voir sur Instagram</a>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('[data-carousel]').forEach(c => {
+    const slides = [...c.querySelectorAll('.slide')];
+    const captions = ['Le studio', "L'accueil", 'La salle Reformer', 'Les cours'];
+    const dotsWrap = c.querySelector('[data-dots]');
+    const cur = c.querySelector('[data-current]');
+    const cap = c.querySelector('[data-caption]');
+    c.querySelector('[data-total]').textContent = slides.length;
+    let i = 0, timer;
+    slides.forEach((_, n) => {
+      const b = document.createElement('button');
+      b.setAttribute('aria-label', 'Image ' + (n + 1));
+      b.addEventListener('click', () => go(n));
+      dotsWrap.appendChild(b);
+    });
+    const dots = [...dotsWrap.children];
+    function go(n) {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle('active', k === i));
+      dots.forEach((d, k) => d.classList.toggle('active', k === i));
+      cur.textContent = i + 1;
+      cap.textContent = captions[i] || '';
+      restart();
+    }
+    function restart() { clearInterval(timer); timer = setInterval(() => go(i + 1), 5000); }
+    c.querySelector('[data-prev]').addEventListener('click', () => go(i - 1));
+    c.querySelector('[data-next]').addEventListener('click', () => go(i + 1));
+    go(0);
+  });
+
+  document.querySelectorAll('[data-vcar]').forEach(c => {
+    const track = c.querySelector('[data-track]');
+    const originals = [...track.children];
+    const n = originals.length;
+    const cur = c.querySelector('[data-vcur]');
+    c.querySelector('[data-vtot]').textContent = n;
+    // clones avant et après pour la boucle infinie
+    originals.slice().reverse().forEach(el => track.insertBefore(el.cloneNode(true), track.firstChild));
+    originals.forEach(el => track.appendChild(el.cloneNode(true)));
+    const items = [...track.children];          // 3n éléments
+    let i = n;                                   // on démarre sur le premier "vrai"
+    let animating = false;
+    const gap = 20;
+    function layout(withAnim, jump) {
+      const el = items[i];
+      const offset = el.offsetLeft - (track.clientWidth - el.offsetWidth) / 2;
+      c._i = i;
+      const prev = items.find(it => it.classList.contains('active'));
+      const prevVideo = prev ? prev.querySelector('video') : null;
+      if (!withAnim) { track.classList.add('no-anim'); track.style.transition = 'none'; }
+      track.style.transform = 'translateX(' + (-offset) + 'px)';
+      items.forEach((it, k) => it.classList.toggle('active', k === i));
+      if (!withAnim) { void track.offsetWidth; track.style.transition = ''; track.classList.remove('no-anim'); }
+      const v = el.querySelector('video');
+      items.forEach(it => { const x = it.querySelector('video'); if (x !== v) x.pause(); });
+      if (jump && prevVideo && prevVideo !== v) {
+        // on reprend la même vidéo (copie) là où elle en était, sans redémarrer
+        try { v.currentTime = prevVideo.currentTime; } catch (e) {}
+      } else if (!jump) {
+        v.currentTime = 0;
+      }
+      v.play().catch(() => {});
+      cur.textContent = ((i % n) + n) % n + 1;
+    }
+    function go(dir) {
+      if (animating) return;
+      animating = true;
+      i += dir;
+      layout(true);
+    }
+    track.addEventListener('transitionend', e => {
+      if (e.target !== track) return;
+      animating = false;
+      if (i < n) { i += n; layout(false, true); }
+      else if (i >= 2 * n) { i -= n; layout(false, true); }
+    });
+    c.querySelector('[data-vprev]').addEventListener('click', () => go(-1));
+    c.querySelector('[data-vnext]').addEventListener('click', () => go(1));
+    items.forEach((it, k) => it.addEventListener('click', () => { if (k !== i) go(k - i); }));
+    items.forEach(it => it.querySelector('video').addEventListener('ended', () => go(1)));
+    window.addEventListener('resize', () => layout(false));
+    const io = new IntersectionObserver(e => {
+      if (e[0].isIntersecting) layout(false); else items.forEach(it => it.querySelector('video').pause());
+    }, { threshold: .3 });
+    io.observe(c);
+    layout(false);
+  });
+
+  (() => {
+    const modal = document.getElementById('insta-modal');
+    const slides = [...modal.querySelectorAll('[data-islides] img')];
+    const dotsWrap = modal.querySelector('[data-idots]');
+    let i = 0;
+    slides.forEach((_, k) => { const b = document.createElement('button'); b.setAttribute('aria-label', 'Slide ' + (k + 1)); b.addEventListener('click', () => go(k)); dotsWrap.appendChild(b); });
+    const dots = [...dotsWrap.children];
+    function go(n) {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle('active', k === i));
+      dots.forEach((d, k) => d.classList.toggle('active', k === i));
+    }
+    modal.querySelector('[data-iprev]').addEventListener('click', () => go(i - 1));
+    modal.querySelector('[data-inext]').addEventListener('click', () => go(i + 1));
+    let sx = null;
+    modal.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+    modal.addEventListener('touchend', e => { if (sx === null) return; const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) go(dx < 0 ? i + 1 : i - 1); sx = null; });
+    const open = () => { go(0); modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('modal-lock'); };
+    const close = () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('modal-lock'); };
+    document.querySelectorAll('[data-insta-open]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); open(); }));
+    modal.querySelector('[data-insta-close]').addEventListener('click', close);
+    modal.addEventListener('click', e => { if (e.target === modal) close(); });
+    document.addEventListener('keydown', e => {
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'Escape') close(); else if (e.key === 'ArrowRight') go(i + 1); else if (e.key === 'ArrowLeft') go(i - 1);
+    });
+    go(0);
+  })();
+
+  document.querySelectorAll('[data-fan]').forEach(fan => {
+    const items = [...fan.children];
+    const sec = fan.closest('.drinks');
+    const cap = sec.querySelector('[data-caption]');
+    const cname = sec.querySelector('[data-cname]');
+    const cdesc = sec.querySelector('[data-cdesc]');
+    const order = ['pos-l', 'pos-c', 'pos-r'];
+    let state = items.map((_, k) => order[k]);   // position de chaque item
+    let timer;
+    function apply() {
+      items.forEach((it, k) => { it.classList.remove('pos-l', 'pos-c', 'pos-r'); it.classList.add(state[k]); });
+      const c = items[state.indexOf('pos-c')];
+      cap.classList.add('fade');
+      setTimeout(() => { cname.textContent = c.dataset.name; cdesc.textContent = c.dataset.desc; cap.classList.remove('fade'); }, 350);
+    }
+    function rotate(dir) {
+      // dir = 1 : la droite passe au centre ; dir = -1 : la gauche passe au centre
+      state = state.map(p => {
+        const i = order.indexOf(p);
+        return order[((i - dir) % 3 + 3) % 3];
+      });
+      apply(); restart();
+    }
+    function restart() { clearInterval(timer); timer = setInterval(() => rotate(1), 4500); }
+    items.forEach((it, k) => it.addEventListener('click', () => {
+      if (state[k] === 'pos-r') rotate(1); else if (state[k] === 'pos-l') rotate(-1);
+    }));
+    sec.querySelector('[data-fnext]').addEventListener('click', () => rotate(1));
+    sec.querySelector('[data-fprev]').addEventListener('click', () => rotate(-1));
+    restart();
+  });
+
+  (() => {
+    const el = document.querySelector('[data-bubble-text]');
+    if (!el) return;
+    const wrap = document.querySelector('.carousel-wrap');
+    const dog = wrap.querySelector('.dog');
+    const bubble = wrap.querySelector('[data-bubble]');
+    const phrases = [
+      "🐾 « Wouf ! Bienvenue chez Chacha ! Ici, on muscle son corps et on garde le sourire ! »",
+      "🐶 « Première séance ? Pas de panique, ici, même les débutants sont des stars ! »",
+      "💕 « Un peu de Pilates, une boisson Chacha et beaucoup de bonne humeur… C'est ça, la belle vie ! »",
+      "🌸 « Tu viens pour le Pilates ou pour me voir ? Allez, promis, je ne dirai rien ! »"
+    ];
+    let p = 0;
+    el.textContent = phrases[0];
+    function next() {
+      p = (p + 1) % phrases.length;
+      bubble.classList.remove('pop'); dog.classList.remove('wiggle');
+      void bubble.offsetWidth;
+      bubble.classList.add('pop'); dog.classList.add('wiggle');
+      setTimeout(() => { el.textContent = phrases[p]; }, 160);
+    }
+    [dog, bubble].forEach(x => x.addEventListener('click', next));
+  })();
+  (() => {
+    const c = document.getElementById('gyro-cursor');
+    if (!c || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    const SIZE = 26, TURN = 0.9, FOLLOW = 0.35;
+    let tx = innerWidth / 2, ty = innerHeight / 2, x = tx, y = ty, ang = 0, tang = 0, scale = 1, tscale = 1, seen = false;
+    addEventListener('mousemove', e => {
+      const dx = e.clientX - tx, dy = e.clientY - ty;
+      tx = e.clientX; ty = e.clientY;
+      if (Math.hypot(dx, dy) > 1.5) tang = Math.atan2(dy, dx) * 180 / Math.PI + 90;
+      if (!seen) { seen = true; x = tx; y = ty; c.classList.remove('hidden'); }
+      const el = e.target.closest('a, button, [role="button"], .cours-card, .fan-item, .dog, .bubble, .vcar-item');
+      tscale = el ? 1.5 : 1;
+    });
+    document.addEventListener('mouseleave', () => c.classList.add('hidden'));
+    document.addEventListener('mouseenter', () => { if (seen) c.classList.remove('hidden'); });
+    addEventListener('mousedown', () => { tscale = 0.8; });
+    addEventListener('mouseup', () => { tscale = 1; });
+    function loop() {
+      x += (tx - x) * FOLLOW; y += (ty - y) * FOLLOW;
+      let d = ((tang - ang + 540) % 360) - 180; ang += d * TURN;
+      scale += (tscale - scale) * 0.2;
+      c.style.transform = 'translate(' + (x - SIZE / 2) + 'px,' + (y - SIZE / 2) + 'px) rotate(' + ang + 'deg) scale(' + scale + ')';
+      requestAnimationFrame(loop);
+    }
+    loop();
+  })();
+</script>
+
+</body>
+</html>
