@@ -60,27 +60,85 @@
 
     /* ---------- NAV ---------- */
     .nav {
-      position: absolute; top: 0; left: 0; right: 0; z-index: 3;
+      position: absolute; top: 0; left: 0; right: 0; z-index: 40;
       height: var(--nav-h);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 72px;
-      font-size: 15px;
+      font-size: 13px;
       letter-spacing: .18em;
       text-transform: uppercase;
-      font-weight: 300;
+      font-weight: 500;
     }
-    .nav ul { display: flex; gap: 44px; list-style: none; }
+    .nav-logo {
+      font-family: var(--serif); font-weight: 300; font-size: 30px;
+      letter-spacing: 0; text-transform: none; color: var(--cream); text-decoration: none; line-height: 1;
+    }
+    .nav ul { display: flex; gap: 36px; list-style: none; }
     .nav a { color: var(--cream); text-decoration: none; transition: opacity .25s; }
     .nav a:hover { opacity: .7; }
+    .nav-cta {
+      display: inline-block; padding: 12px 24px;
+      border: 1px solid var(--cream); color: var(--cream);
+      text-decoration: none; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; font-weight: 600;
+      transition: background .3s, color .3s;
+    }
+    .nav-cta:hover { background: var(--offwhite); color: var(--ink); opacity: 1 !important; }
+    .nav-right { display: flex; align-items: center; gap: 36px; }
 
-    .nav-right { display: flex; align-items: center; gap: 44px; }
-    .currency { display: inline-flex; align-items: center; gap: 12px; cursor: pointer; }
-    .currency svg { width: 14px; height: 14px; }
-    .sep { width: 1px; height: 28px; background: rgba(241,238,235,.75); }
-    .icons { display: flex; align-items: center; gap: 44px; }
-    .icons a { display: inline-flex; align-items: center; gap: 12px; }
-    .icons svg { width: 26px; height: 26px; stroke: var(--cream); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-    .count { font-size: 17px; letter-spacing: 0; }
+    /* burger */
+    .burger {
+      display: none; position: relative; z-index: 31;
+      width: 44px; height: 44px; margin-right: -10px;
+      background: none; border: 0; cursor: pointer; padding: 0;
+    }
+    .burger span {
+      position: absolute; left: 10px; width: 24px; height: 1.5px; background: var(--cream);
+      transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .25s, background .3s;
+    }
+    .burger span:nth-child(1) { top: 16px; }
+    .burger span:nth-child(2) { top: 22px; }
+    .burger span:nth-child(3) { top: 28px; }
+    body.menu-open .burger span { background: var(--ink); }
+    body.menu-open .burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    body.menu-open .burger span:nth-child(2) { opacity: 0; }
+    body.menu-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* panneau mobile */
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 30;
+      background: var(--offwhite); color: var(--ink);
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: calc(var(--nav-h) + 8px) 24px 40px;
+      opacity: 0; visibility: hidden; transform: translateY(-12px);
+      transition: opacity .35s ease, transform .4s cubic-bezier(.2,.8,.2,1), visibility 0s .4s;
+    }
+    body.menu-open .mobile-menu { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+    body.menu-open { overflow: hidden; }
+    body.menu-open .nav-logo { color: var(--ink); }
+    .mobile-menu ul { list-style: none; display: flex; flex-direction: column; }
+    .mobile-menu li { border-bottom: 1px solid rgba(35,36,30,.12); }
+    .mobile-menu li a {
+      display: flex; align-items: baseline; justify-content: space-between;
+      padding: 18px 0; color: var(--ink); text-decoration: none;
+      font-family: var(--serif); font-weight: 700; font-size: 34px; line-height: 1; letter-spacing: 0; text-transform: none;
+      opacity: 0; transform: translateY(14px); transition: opacity .4s ease, transform .5s cubic-bezier(.2,.8,.2,1);
+    }
+    .mobile-menu li a small { font-family: var(--sans); font-weight: 500; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); opacity: .55; }
+    body.menu-open .mobile-menu li a { opacity: 1; transform: none; }
+    body.menu-open .mobile-menu li:nth-child(1) a { transition-delay: .08s; }
+    body.menu-open .mobile-menu li:nth-child(2) a { transition-delay: .13s; }
+    body.menu-open .mobile-menu li:nth-child(3) a { transition-delay: .18s; }
+    body.menu-open .mobile-menu li:nth-child(4) a { transition-delay: .23s; }
+    body.menu-open .mobile-menu li:nth-child(5) a { transition-delay: .28s; }
+    body.menu-open .mobile-menu li:nth-child(6) a { transition-delay: .33s; }
+    .mobile-menu .mm-foot { display: flex; flex-direction: column; gap: 18px; }
+    .mobile-menu .mm-cta {
+      display: block; text-align: center; padding: 18px 20px;
+      background: var(--ink); color: var(--offwhite); text-decoration: none;
+      font-size: 13px; letter-spacing: .22em; text-transform: uppercase; font-weight: 600;
+    }
+    .mobile-menu .mm-meta { display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); }
+    .mobile-menu .mm-meta a { color: var(--ink); text-decoration: none; }
 
     /* ---------- CONTENT ---------- */
     .hero-inner {
@@ -161,9 +219,11 @@
     }
     @media (max-width: 900px) {
       :root { --nav-h: 84px; }
-      .nav { padding: 0 24px; font-size: 13px; }
-      .nav ul { display: none; }
-      .nav-right, .icons { gap: 22px; }
+      .nav { padding: 0 24px; }
+      .nav ul, .nav .nav-cta { display: none; }
+      .burger { display: block; }
+      .nav-logo { opacity: 0; transition: opacity .3s; }
+      body.menu-open .nav-logo { opacity: 1; position: relative; z-index: 31; }
       .hero { background-position: 62% center; }
       .hero::before { background: linear-gradient(180deg, rgba(35,36,30,.45), rgba(35,36,30,.15) 60%); }
       .hero-inner { padding: var(--nav-h) 24px 60px; align-items: flex-end; }
@@ -1021,36 +1081,62 @@
       .vs-card.reformer { transform: none; }
       .vs-verdict { font-size: 24px; }
     }
-  </style>
+  
+    /* ---------- CORRECTIFS MOBILE ---------- */
+    @media (max-width: 900px) {
+      /* hero : marque en haut, tagline en bas, sans chevauchement */
+      .hero-inner { align-items: flex-start; padding: calc(var(--nav-h) + 16px) 24px 230px; }
+      .tagline { bottom: 36px; right: 20px; font-size: 44px; line-height: 1.02; }
+      /* philosophie : titre moins large, chien + bulle dans l'espace libre au-dessus du carrousel */
+      .philo h2 { font-size: 48px; line-height: 1.06; }
+      .carousel-wrap { margin-top: 180px; }
+      .carousel-wrap .bubble { bottom: calc(100% + 56px); width: min(230px, 64%); }
+      /* bannière boissons : format natif de l'image, non recadrée */
+      .cours-banner { aspect-ratio: 8 / 3; }
+      .cours-banner img { object-fit: cover; object-position: center; }
+    }
+    @media (max-width: 420px) {
+      .brand h1 { font-size: 76px; }
+      .brand .sub { font-size: 26px; }
+      .tagline { font-size: 38px; }
+      .philo h2 { font-size: 42px; }
+    }
+</style>
 </head>
 <body>
 
 <header class="hero">
   <nav class="nav">
+    <a href="#" class="nav-logo">Chacha</a>
     <ul>
-      <li><a href="#">Nouveautés</a></li>
-      <li><a href="#">Le vestiaire</a></li>
-      <li><a href="#">Gift card</a></li>
+      <li><a href="#studio">Le studio</a></li>
+      <li><a href="#cours">Les cours</a></li>
+      <li><a href="#reformer">Reformer</a></li>
+      <li><a href="#boissons">Boissons</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-right">
-      <span class="currency">EUR €
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </span>
-      <span class="sep"></span>
-      <div class="icons">
-        <a href="#" aria-label="Rechercher">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg>
-        </a>
-        <a href="#" aria-label="Mon compte">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-        </a>
-        <a href="#" aria-label="Panier">
-          <svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
-          <span class="count">0</span>
-        </a>
-      </div>
+      <a href="#contact" class="nav-cta">Réserver</a>
+      <button class="burger" data-burger aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+
+  <div class="mobile-menu" id="mobile-menu" data-mobile-menu>
+    <ul>
+      <li><a href="#studio">Le studio<small>01</small></a></li>
+      <li><a href="#cours">Les cours<small>02</small></a></li>
+      <li><a href="#reformer">Reformer<small>03</small></a></li>
+      <li><a href="#boissons">Boissons<small>04</small></a></li>
+      <li><a href="#instagram">Instagram<small>05</small></a></li>
+      <li><a href="#contact">Contact<small>06</small></a></li>
+    </ul>
+    <div class="mm-foot">
+      <a href="#contact" class="mm-cta">Réserver un cours</a>
+      <div class="mm-meta"><span>Aix-en-Provence</span><a href="https://www.instagram.com/chachapilates/" target="_blank" rel="noopener">@chachapilates</a></div>
+    </div>
+  </div>
 
   <div class="hero-inner">
     <div class="brand">
@@ -1663,6 +1749,16 @@
   new IntersectionObserver(function(e,o){ if(e[0].isIntersecting){ s.classList.add('is-in'); o.disconnect(); } },{threshold:.25}).observe(s);
   if(v) new IntersectionObserver(function(e){ e[0].isIntersecting ? v.play().catch(function(){}) : v.pause(); }).observe(v);
 })();
+</script>
+<script>
+  (function(){
+    var b=document.querySelector('[data-burger]'), m=document.querySelector('[data-mobile-menu]');
+    if(!b||!m) return;
+    function set(o){ document.body.classList.toggle('menu-open',o); b.setAttribute('aria-expanded',o); b.setAttribute('aria-label',o?'Fermer le menu':'Ouvrir le menu'); }
+    b.addEventListener('click',function(){ set(!document.body.classList.contains('menu-open')); });
+    m.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ set(false); }); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') set(false); });
+  })();
 </script>
 </body>
 </html>
