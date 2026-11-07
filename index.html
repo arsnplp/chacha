@@ -705,6 +705,111 @@
       .yg .yg__arch{clip-path:none}
     }
 
+    /* ---------- PILATES MAT (bientôt au studio) ---------- */
+    .pm{
+      position:relative; overflow:hidden; isolation:isolate;
+      background:var(--rose); color:var(--ink);
+      padding:clamp(80px,10vw,140px) 24px clamp(120px,12vw,170px);
+    }
+    .pm *{box-sizing:border-box}
+    .pm__ghost{
+      position:absolute; z-index:-1; left:-3vw; top:-8vw;
+      font-family:var(--serif); font-style:italic; font-weight:300;
+      font-size:clamp(320px,46vw,740px); line-height:1;
+      color:rgba(241,238,235,.18); pointer-events:none; user-select:none;
+    }
+    .pm__inner{max-width:1180px; margin:0 auto; display:grid; grid-template-columns:.95fr 1.05fr; gap:clamp(32px,6vw,90px); align-items:center}
+    .pm__visual{position:relative; justify-self:center; width:min(100%,400px)}
+    .pm__pill{
+      position:relative; aspect-ratio:3/4.4; border-radius:999px; overflow:hidden;
+      box-shadow:0 40px 80px -30px rgba(35,36,30,.45);
+      clip-path:inset(0 100% 0 0 round 999px);
+      transition:clip-path 1.6s cubic-bezier(.7,0,.2,1) .2s;
+    }
+    .pm.is-in .pm__pill{clip-path:inset(0 0 0 0 round 999px)}
+    .pm__pill video{width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.2) translateX(-4%); transition:transform 2.4s cubic-bezier(.2,.8,.2,1) .2s}
+    .pm.is-in .pm__pill video{transform:scale(1.03)}
+    .pm__line{position:absolute; inset:-14px -14px 14px 14px; border:1px solid var(--offwhite); border-radius:999px; z-index:-1; opacity:0; transform:rotate(-4deg); transition:opacity 1.2s ease 1.2s, transform 1.6s cubic-bezier(.2,.8,.2,1) 1.2s}
+    .pm.is-in .pm__line{opacity:.8; transform:rotate(4deg)}
+    .pm__sticker{
+      position:absolute; right:-34px; top:18%; width:112px; height:112px; border-radius:50%;
+      background:var(--sage); color:var(--offwhite); display:grid; place-items:center; text-align:center;
+      font-family:var(--serif); font-style:italic; font-weight:300; font-size:22px; line-height:1;
+      box-shadow:0 18px 40px -18px rgba(35,36,30,.5);
+      transform:scale(0) rotate(-30deg); transition:transform .9s cubic-bezier(.3,1.6,.5,1) 1.5s;
+    }
+    .pm.is-in .pm__sticker{transform:scale(1) rotate(-10deg); animation:pm-float 6s ease-in-out 2.4s infinite}
+    .pm__sticker small{display:block; font-family:var(--sans); font-style:normal; font-weight:600; font-size:9px; letter-spacing:.28em; text-transform:uppercase; margin-top:6px}
+
+    .pm__kicker{font-size:12px; font-weight:600; letter-spacing:.32em; text-transform:uppercase; display:flex; align-items:center; gap:14px; margin:0 0 clamp(28px,3.4vw,52px)}
+    .pm__kicker::before{content:""; width:42px; height:1px; background:currentColor; opacity:.6}
+    .pm__title{margin:0; font-family:var(--serif); font-weight:700; line-height:1; letter-spacing:-.02em}
+    .pm__title .big{display:block; font-size:clamp(68px,8.6vw,132px); line-height:.95}
+    .pm__title .it{display:block; font-style:italic; font-weight:300; letter-spacing:0; color:var(--offwhite); font-size:clamp(32px,4.2vw,62px); line-height:1.1; margin-top:.15em}
+    .pm__title .w{display:inline-block; white-space:nowrap}
+    .pm__title .char{display:inline-block; opacity:0; transform:translateY(.45em) rotate(4deg); filter:blur(6px)}
+    .pm.is-in .pm__title .char{animation:pm-char 1.1s cubic-bezier(.2,.8,.2,1) forwards; animation-delay:calc(var(--i)*60ms + .15s)}
+    .pm__text{max-width:470px; font-size:15.5px; line-height:1.75; margin:28px 0 30px}
+
+    .pm__list{list-style:none; padding:0; margin:0 0 38px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:520px}
+    .pm__list li{position:relative; padding-top:16px}
+    .pm__list li::before{content:""; position:absolute; top:0; left:0; height:1px; width:100%; background:var(--ink); opacity:.35; transform:scaleX(0); transform-origin:left; transition:transform 1s cubic-bezier(.7,0,.2,1)}
+    .pm.is-in .pm__list li::before{transform:scaleX(1)}
+    .pm__list span{display:block; font-size:11px; font-weight:600; letter-spacing:.2em; opacity:.6; margin-bottom:6px}
+    .pm__list b{display:block; font-family:var(--serif); font-weight:700; font-size:22px; line-height:1.05}
+
+    .pm__cta{
+      display:inline-flex; align-items:center; gap:12px; text-decoration:none; color:var(--ink);
+      border:1px solid var(--ink); padding:16px 28px;
+      font-size:13px; font-weight:600; letter-spacing:.2em; text-transform:uppercase;
+      position:relative; overflow:hidden; z-index:0; transition:color .5s ease;
+    }
+    .pm__cta::before{content:""; position:absolute; inset:0; background:var(--ink); transform:scaleX(0); transform-origin:left; transition:transform .5s cubic-bezier(.7,0,.2,1); z-index:-1}
+    .pm__cta:hover{color:var(--offwhite)}
+    .pm__cta:hover::before{transform:scaleX(1)}
+    .pm__cta svg{width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:1.8}
+
+    /* ruban défilant */
+    .pm__ribbon{position:absolute; left:-5%; right:-5%; bottom:clamp(28px,4vw,46px); background:var(--sage); color:var(--offwhite); transform:rotate(-2deg); overflow:hidden; padding:14px 0; z-index:1}
+    .pm__track{display:flex; width:max-content; animation:pm-marquee 28s linear infinite}
+    .pm__track span{font-family:var(--serif); font-style:italic; font-weight:300; font-size:24px; line-height:1; white-space:nowrap; padding-right:28px}
+    .pm__track span i{font-style:normal; opacity:.6; padding-left:28px}
+
+    .pm [data-up]{opacity:0; transform:translateY(24px); transition:opacity 1s ease, transform 1s cubic-bezier(.2,.8,.2,1)}
+    .pm.is-in [data-up]{opacity:1; transform:none}
+    .pm.is-in [data-up="1"]{transition-delay:.8s}
+    .pm.is-in [data-up="2"]{transition-delay:.95s}
+    .pm.is-in [data-up="3"]{transition-delay:1.1s}
+    .pm.is-in [data-up="4"]{transition-delay:1.25s}
+    .pm.is-in .pm__list li:nth-child(1)::before{transition-delay:1.1s}
+    .pm.is-in .pm__list li:nth-child(2)::before{transition-delay:1.25s}
+    .pm.is-in .pm__list li:nth-child(3)::before{transition-delay:1.4s}
+    @keyframes pm-char{to{opacity:1; transform:none; filter:blur(0)}}
+    @keyframes pm-float{0%,100%{transform:rotate(-10deg) translateY(0)}50%{transform:rotate(-4deg) translateY(-8px)}}
+    @keyframes pm-marquee{to{transform:translateX(-50%)}}
+
+    @media (max-width:860px){
+      .pm{padding:72px 16px 130px}
+      .pm__inner{grid-template-columns:1fr; gap:56px; text-align:center}
+      .pm__kicker{justify-content:center}
+      .pm__kicker::after{content:""; width:42px; height:1px; background:currentColor; opacity:.6}
+      .pm__text{margin-left:auto; margin-right:auto}
+      .pm__list{margin-left:auto; margin-right:auto; gap:14px}
+      .pm__list b{font-size:18px}
+      .pm__visual{width:min(74%,320px)}
+      .pm__sticker{width:92px; height:92px; right:-26px; font-size:18px}
+      .pm__ghost{top:auto; bottom:6vw; left:-12vw}
+      .pm__track span{font-size:19px}
+      .pm__cta{padding:15px 22px; letter-spacing:.16em}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .pm *,.pm *::before,.pm *::after{animation:none!important; transition:none!important}
+      .pm .pm__title .char,.pm [data-up]{opacity:1; transform:none; filter:none}
+      .pm .pm__pill{clip-path:none}
+      .pm .pm__sticker{transform:rotate(-10deg)}
+      .pm .pm__list li::before{transform:none}
+    }
+
     /* ---------- BOISSONS (éventail) ---------- */
     .drinks {
       background: var(--offwhite); color: var(--ink);
@@ -1160,16 +1265,39 @@
   </div>
 </section>
 
-<section class="soon rose" id="pilates-mat">
-  <span class="ghost" aria-hidden="true">M</span>
-  <div>
-    <h2 class="big">Pilates Mat<em>bientôt au studio</em></h2>
-    <p class="sub">Les cours arrivent · suivez l'actualité</p>
-    <a class="link" href="https://www.instagram.com/chachapilates/" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-      @chachapilates
-    </a>
+<section class="pm" id="pilates-mat" aria-labelledby="pm-title">
+  <div class="pm__ghost" aria-hidden="true">M</div>
+  <div class="pm__inner">
+    <div class="pm__visual">
+      <div class="pm__line" aria-hidden="true"></div>
+      <div class="pm__pill">
+        <video src="video/pilates-mat/pilates-mat.mp4" poster="image/pilates-mat-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+      </div>
+      <div class="pm__sticker" aria-hidden="true"><span>bientôt<small>au studio</small></span></div>
+    </div>
+    <div class="pm__content">
+      <p class="pm__kicker" data-up="1">Nouveau cours</p>
+      <h2 class="pm__title" id="pm-title">
+        <span class="big" data-split>Pilates Mat,</span>
+        <span class="it" data-split>bientôt au studio.</span>
+      </h2>
+      <p class="pm__text" data-up="2">
+        Le Pilates au sol, sans machine, juste vous et votre tapis.
+        Un travail lent et précis qui gaine en profondeur, redresse la posture
+        et réveille des muscles que l'on oublie.
+      </p>
+      <ul class="pm__list" data-up="3">
+        <li><span>01</span><b>Au sol</b></li>
+        <li><span>02</span><b>Gainage profond</b></li>
+        <li><span>03</span><b>Tous niveaux</b></li>
+      </ul>
+      <a class="pm__cta" data-up="4" href="https://www.instagram.com/chachapilates/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Suivre l'ouverture
+      </a>
+    </div>
   </div>
+  <div class="pm__ribbon" aria-hidden="true"><div class="pm__track"><span>Pilates Mat<i>·</i></span><span>au sol<i>·</i></span><span>gainage profond<i>·</i></span><span>contrôle<i>·</i></span><span>bientôt au studio<i>·</i></span><span>Pilates Mat<i>·</i></span><span>au sol<i>·</i></span><span>gainage profond<i>·</i></span><span>contrôle<i>·</i></span><span>bientôt au studio<i>·</i></span><span>Pilates Mat<i>·</i></span><span>au sol<i>·</i></span><span>gainage profond<i>·</i></span><span>contrôle<i>·</i></span><span>bientôt au studio<i>·</i></span><span>Pilates Mat<i>·</i></span><span>au sol<i>·</i></span><span>gainage profond<i>·</i></span><span>contrôle<i>·</i></span><span>bientôt au studio<i>·</i></span></div></div>
 </section>
 
 <section class="drinks" id="boissons">
@@ -1498,6 +1626,28 @@
   var s=document.querySelector('.yg'); if(!s) return;
   s.querySelectorAll('[data-split]').forEach(function(el,k){
     var base=k*4, n=0, txt=el.textContent.trim(); el.setAttribute('aria-label',txt); el.textContent='';
+    txt.split(' ').forEach(function(word,wi){
+      if(wi) el.appendChild(document.createTextNode(' '));
+      var w=document.createElement('span'); w.className='w'; w.setAttribute('aria-hidden','true');
+      Array.from(word).forEach(function(c){
+        var sp=document.createElement('span'); sp.className='char';
+        sp.style.setProperty('--i',base+n++); sp.textContent=c; w.appendChild(sp);
+      });
+      el.appendChild(w);
+    });
+  });
+  var v=s.querySelector('video');
+  if(!('IntersectionObserver' in window)){ s.classList.add('is-in'); return; }
+  new IntersectionObserver(function(e,o){ if(e[0].isIntersecting){ s.classList.add('is-in'); o.disconnect(); } },{threshold:.25}).observe(s);
+  if(v) new IntersectionObserver(function(e){ e[0].isIntersecting ? v.play().catch(function(){}) : v.pause(); }).observe(v);
+})();
+</script>
+<script>
+/* Section Pilates Mat : lettres + apparition + vidéo en pause hors écran */
+(function(){
+  var s=document.querySelector('.pm'); if(!s) return;
+  s.querySelectorAll('[data-split]').forEach(function(el,k){
+    var base=k*5, n=0, txt=el.textContent.trim(); el.setAttribute('aria-label',txt); el.textContent='';
     txt.split(' ').forEach(function(word,wi){
       if(wi) el.appendChild(document.createTextNode(' '));
       var w=document.createElement('span'); w.className='w'; w.setAttribute('aria-hidden','true');
