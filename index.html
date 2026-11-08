@@ -947,6 +947,31 @@
       .pm .pm__list li::before{transform:none}
     }
 
+    /* ---------- Échange des couleurs : Yoga en rose, Pilates Mat en sauge ---------- */
+    .yg{background:var(--rose); color:var(--ink)}
+    .yg__ghost{color:rgba(241,238,235,.22)}
+    .yg__title .it{color:var(--offwhite)}
+    .yg__dot::before,.yg__dot::after{border-color:var(--ink)}
+    .yg__dot::before{background:rgba(35,36,30,.08)}
+    .yg__cta{color:var(--ink); border-color:var(--ink)}
+    .yg__cta::before{background:var(--ink)}
+    .yg__cta:hover{color:var(--offwhite)}
+    .yg__badge text{fill:var(--ink)}
+    .yg__badge-c i{background:var(--sage)}
+    .yg__line{border-color:var(--offwhite)}
+    .yg__arch::after{background:linear-gradient(180deg,rgba(217,183,181,0) 55%,rgba(35,36,30,.3))}
+
+    .pm{background:var(--sage); color:var(--offwhite)}
+    .pm__ghost{color:rgba(241,238,235,.08)}
+    .pm__title .it{color:var(--offwhite)}
+    .pm__line{border-color:var(--offwhite)}
+    .pm__sticker{background:var(--rose); color:var(--ink)}
+    .pm__list li::before{background:var(--offwhite); opacity:.5}
+    .pm__cta{color:var(--offwhite); border-color:var(--offwhite)}
+    .pm__cta::before{background:var(--offwhite)}
+    .pm__cta:hover{color:var(--ink)}
+    .pm__ribbon{background:var(--rose); color:var(--ink)}
+
     /* ---------- BANNIÈRE FINALE ---------- */
     .ban{background:var(--offwhite); padding:clamp(24px,3vw,48px) clamp(12px,2.4vw,40px) clamp(40px,4vw,64px)}
     .ban__card{
