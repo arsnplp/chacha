@@ -1255,6 +1255,24 @@
       .tagline { font-size: 38px; }
       .philo h2 { font-size: 42px; }
     }
+
+    /* ---------- Reformer ou Lagree : carrousel sur mobile ---------- */
+    .vs-dots{display:none}
+    @media (max-width:760px){
+      .vs-grid{display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:14px; margin:0 -24px; padding:26px 24px 8px; scroll-padding:0 24px; scrollbar-width:none; -webkit-overflow-scrolling:touch; align-items:stretch}
+      .vs-grid::-webkit-scrollbar{display:none}
+      .vs-grid > .vs-card{flex:0 0 86%; scroll-snap-align:start; padding:34px 22px 26px; transform:none}
+      .vs-card h3{font-size:32px}
+      .vs-card .desc{font-size:14px; margin-top:16px}
+      .vs-card ul{margin-top:18px; gap:10px}
+      .vs-card li{font-size:13.5px}
+      .vs-card .foot{padding-top:22px}
+      .vs-badge{left:22px}
+      .vs-dots{display:flex; justify-content:center; align-items:center; gap:8px; margin-top:16px}
+      .vs-dots i{width:7px; height:7px; border-radius:99px; background:rgba(241,238,235,.45); transition:width .4s ease, background .4s ease}
+      .vs-dots i.on{width:26px; background:var(--offwhite)}
+      .vs-dots span{margin-left:10px; font-size:11px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; opacity:.85}
+    }
 </style>
 </head>
 <body>
@@ -1438,6 +1456,7 @@
       </div>
     </div>
 
+    <div class="vs-dots" aria-hidden="true"><i class="on"></i><i></i><span>Glissez</span></div>
     <p class="vs-verdict">Chez Chacha, on a choisi le <b>Reformer</b> parce qu'on veut que vous progressiez longtemps, pas que vous souffriez vite.</p>
   </div>
 </section>
@@ -2036,6 +2055,16 @@
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(e,o){ if(e[0].isIntersecting){ s.classList.add('is-in'); o.disconnect(); } },{threshold:.3}).observe(s);
   } else s.classList.add('is-in');
+})();
+</script>
+<script>
+/* Reformer ou Lagree : points du carrousel mobile */
+(function(){
+  var g=document.querySelector('.vs-grid'), d=document.querySelectorAll('.vs-dots i'); if(!g||!d.length) return;
+  g.addEventListener('scroll',function(){
+    var i=g.scrollLeft > (g.scrollWidth-g.clientWidth)/2 ? 1 : 0;
+    d.forEach(function(x,k){ x.classList.toggle('on',k===i); });
+  },{passive:true});
 })();
 </script>
 </body>
