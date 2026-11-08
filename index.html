@@ -1009,7 +1009,7 @@
     @media (max-width:760px){
       .ban{padding:16px 12px 32px}
       .ban__card{aspect-ratio:auto; min-height:560px; align-items:flex-end}
-      .ban__img img{object-position:47% 50%}
+      .ban__img img{object-position:50% 50%}
       .ban__card::before{background:linear-gradient(0deg,rgba(35,36,30,.72) 0%,rgba(35,36,30,.35) 45%,rgba(35,36,30,0) 70%)}
       .ban__inner{padding:28px 18px 34px}
       .ban__title{font-size:clamp(30px,8.6vw,40px)}
@@ -1669,7 +1669,10 @@
 <section class="ban" id="contact-banniere" aria-labelledby="ban-title">
   <div class="ban__card">
     <div class="ban__img">
-      <img src="image/baniere.jpg" srcset="image/baniere-900.jpg 900w, image/baniere.jpg 1750w" sizes="(max-width:760px) 100vw, 1500px" alt="Une élève en fente sur le Reformer, dans la lumière chaude du studio Chacha" loading="lazy">
+      <picture>
+        <source media="(max-width:760px)" srcset="image/baniere-mobile.jpg">
+        <img src="image/baniere.jpg" srcset="image/baniere-900.jpg 900w, image/baniere.jpg 1750w" sizes="(max-width:760px) 100vw, 1500px" alt="Une élève en fente sur le Reformer, dans la lumière chaude du studio Chacha" loading="lazy">
+      </picture>
     </div>
     <div class="ban__inner">
       <p class="ban__kicker">Chacha Pilates Studio</p>
