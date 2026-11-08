@@ -946,48 +946,55 @@
     }
 
     /* ---------- BANNIÈRE FINALE ---------- */
-    .ban{position:relative; overflow:hidden; isolation:isolate; color:var(--offwhite); min-height:clamp(520px,46vw,720px); display:flex; align-items:center}
+    .ban{background:var(--offwhite); padding:clamp(24px,3vw,48px) clamp(12px,2.4vw,40px) clamp(40px,4vw,64px)}
+    .ban__card{
+      position:relative; overflow:hidden; isolation:isolate; width:100%; max-width:1500px; margin:0 auto;
+      border-radius:clamp(18px,2vw,28px); color:var(--offwhite); text-align:center;
+      aspect-ratio:1750/690; min-height:440px; display:flex; align-items:center; justify-content:center;
+      clip-path:inset(5% 6% round 28px); transition:clip-path 1.6s cubic-bezier(.7,0,.2,1);
+    }
+    .ban.is-in .ban__card{clip-path:inset(0 0 round clamp(18px,2vw,28px))}
     .ban__img{position:absolute; inset:0; z-index:-2}
-    .ban__img img{width:100%; height:100%; object-fit:cover; object-position:50% 50%; transform:scale(1.12); transition:transform 3.2s cubic-bezier(.2,.8,.2,1)}
+    .ban__img img{width:100%; height:100%; object-fit:cover; object-position:50% 50%; transform:scale(1.14); transition:transform 3s cubic-bezier(.2,.8,.2,1)}
     .ban.is-in .ban__img img{transform:scale(1)}
-    .ban::before{content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,rgba(35,36,30,.6) 0%,rgba(35,36,30,.35) 30%,rgba(35,36,30,0) 46%)}
-    .ban__inner{width:100%; max-width:1240px; margin:0 auto; padding:clamp(70px,8vw,110px) 24px; display:flex; flex-direction:column; align-items:flex-start; padding-left:clamp(24px,6vw,96px)}
-    .ban__kicker{font-size:12px; font-weight:600; letter-spacing:.32em; text-transform:uppercase; display:flex; align-items:center; gap:14px; margin:0 0 24px}
-    .ban__kicker::before{content:""; width:42px; height:1px; background:currentColor; opacity:.7}
-    .ban__title{margin:0; max-width:min(470px,36vw); font-family:var(--serif); font-weight:700; font-size:clamp(32px,3.4vw,54px); line-height:1; letter-spacing:-.02em; text-shadow:0 2px 30px rgba(35,36,30,.25)}
-    .ban__title em{display:block; margin-top:.1em; font-style:italic; font-weight:300; letter-spacing:0; color:var(--rose)}
+    .ban__card::before{content:""; position:absolute; inset:0; z-index:-1; background:radial-gradient(ellipse 55% 60% at 50% 48%,rgba(35,36,30,.42),rgba(35,36,30,.12) 70%,rgba(35,36,30,0))}
+    .ban__inner{padding:40px 24px; display:flex; flex-direction:column; align-items:center}
+    .ban__kicker{font-size:12px; font-weight:600; letter-spacing:.32em; text-transform:uppercase; display:flex; align-items:center; gap:14px; margin:0 0 20px}
+    .ban__kicker::before,.ban__kicker::after{content:""; width:36px; height:1px; background:currentColor; opacity:.7}
+    .ban__title{margin:0; max-width:860px; font-family:var(--serif); font-weight:700; font-size:clamp(34px,4.2vw,66px); line-height:1.02; letter-spacing:-.02em; text-shadow:0 2px 30px rgba(35,36,30,.35)}
+    .ban__title em{display:block; margin-top:.08em; font-style:italic; font-weight:300; letter-spacing:0; color:var(--rose)}
     .ban__title .w{display:inline-block; white-space:nowrap}
     .ban__title .char{display:inline-block; opacity:0; transform:translateY(.45em) rotate(4deg); filter:blur(6px)}
-    .ban.is-in .ban__title .char{animation:ban-char 1.1s cubic-bezier(.2,.8,.2,1) forwards; animation-delay:calc(var(--i)*35ms + .3s)}
+    .ban.is-in .ban__title .char{animation:ban-char 1.1s cubic-bezier(.2,.8,.2,1) forwards; animation-delay:calc(var(--i)*30ms + .7s)}
     .ban__cta{
-      margin-top:38px; display:inline-flex; align-items:center; gap:12px; text-decoration:none;
-      background:var(--offwhite); color:var(--ink); padding:18px 32px;
-      font-size:13px; font-weight:600; letter-spacing:.2em; text-transform:uppercase;
-      position:relative; overflow:hidden; z-index:0; transition:color .5s ease;
+      margin-top:34px; display:inline-flex; align-items:center; gap:10px; text-decoration:none;
+      background:var(--offwhite); color:var(--ink); padding:15px 30px; border-radius:999px;
+      font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+      position:relative; transition:background .4s ease, color .4s ease, transform .4s ease;
       opacity:0; transform:translateY(20px);
     }
-    .ban.is-in .ban__cta{opacity:1; transform:none; transition:opacity 1s ease 1.6s, transform 1s cubic-bezier(.2,.8,.2,1) 1.6s, color .5s ease}
-    .ban__cta::before{content:""; position:absolute; inset:0; background:var(--rose); transform:scaleX(0); transform-origin:left; transition:transform .5s cubic-bezier(.7,0,.2,1); z-index:-1}
-    .ban__cta:hover::before{transform:scaleX(1)}
-    .ban__cta svg{width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:1.8}
-    .ban__cta::after{content:""; position:absolute; inset:0; border:1px solid var(--offwhite); animation:ban-pulse 2.6s ease-out 3s infinite; pointer-events:none}
+    .ban.is-in .ban__cta{opacity:1; transform:none; transition:opacity 1s ease 2s, transform 1s cubic-bezier(.2,.8,.2,1) 2s, background .4s ease, color .4s ease}
+    .ban__cta:hover{background:var(--rose); color:var(--ink)}
+    .ban__cta svg{width:17px; height:17px; stroke:currentColor; fill:none; stroke-width:1.8}
+    .ban__cta::after{content:""; position:absolute; inset:0; border-radius:inherit; border:1px solid var(--offwhite); animation:ban-pulse 2.6s ease-out 3.2s infinite; pointer-events:none}
     @keyframes ban-char{to{opacity:1; transform:none; filter:blur(0)}}
-    @keyframes ban-pulse{0%{transform:scale(1); opacity:.8}100%{transform:scale(1.18,1.45); opacity:0}}
+    @keyframes ban-pulse{0%{transform:scale(1); opacity:.8}100%{transform:scale(1.2,1.5); opacity:0}}
     @media (max-width:760px){
-      .ban{display:block; min-height:0; background:var(--ink)}
-      .ban__img{position:relative; aspect-ratio:4/3.2}
-      .ban__img img{object-position:46% 50%}
-      .ban::before{display:none}
-      .ban__inner{padding:44px 16px 60px; text-align:center; align-items:center}
-      .ban__kicker{justify-content:center}
-      .ban__kicker::after{content:""; width:42px; height:1px; background:currentColor; opacity:.7}
-      .ban__title{margin:0 auto; max-width:none; font-size:clamp(34px,9.6vw,46px)}
-      .ban__cta{padding:16px 26px; letter-spacing:.16em}
+      .ban{padding:16px 12px 32px}
+      .ban__card{aspect-ratio:auto; min-height:560px; align-items:flex-end}
+      .ban__img img{object-position:47% 50%}
+      .ban__card::before{background:linear-gradient(0deg,rgba(35,36,30,.72) 0%,rgba(35,36,30,.35) 45%,rgba(35,36,30,0) 70%)}
+      .ban__inner{padding:28px 18px 34px}
+      .ban__title{font-size:clamp(30px,8.6vw,40px)}
+      .ban__cta{padding:14px 24px}
+      .ban__kicker{font-size:11px; letter-spacing:.24em; white-space:nowrap}
+      .ban__kicker::before,.ban__kicker::after{width:20px}
     }
     @media (prefers-reduced-motion:reduce){
-      .ban *,.ban *::before,.ban *::after{animation:none!important; transition:none!important}
+      .ban *,.ban *::before,.ban *::after,.ban .ban__card{animation:none!important; transition:none!important}
       .ban .ban__title .char,.ban .ban__cta{opacity:1; transform:none; filter:none}
       .ban .ban__img img{transform:none}
+      .ban .ban__card{clip-path:none}
     }
 
     /* ---------- BOISSONS (éventail) ---------- */
@@ -1614,16 +1621,18 @@
 </section>
 
 <section class="ban" id="contact-banniere" aria-labelledby="ban-title">
-  <div class="ban__img">
-    <img src="image/baniere.jpg" srcset="image/baniere-900.jpg 900w, image/baniere.jpg 1750w" sizes="100vw" alt="Une élève en fente sur le Reformer, dans la lumière chaude du studio Chacha" loading="lazy">
-  </div>
-  <div class="ban__inner">
-    <p class="ban__kicker">Chacha Pilates Studio</p>
-    <h2 class="ban__title" id="ban-title"><span data-split>Laissez celle que vous voulez devenir</span><em data-split>prendre le contrôle.</em></h2>
-    <a class="ban__cta" href="tel:+33616709400">
-      <svg viewBox="0 0 24 24"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
-      Nous appeler
-    </a>
+  <div class="ban__card">
+    <div class="ban__img">
+      <img src="image/baniere.jpg" srcset="image/baniere-900.jpg 900w, image/baniere.jpg 1750w" sizes="(max-width:760px) 100vw, 1500px" alt="Une élève en fente sur le Reformer, dans la lumière chaude du studio Chacha" loading="lazy">
+    </div>
+    <div class="ban__inner">
+      <p class="ban__kicker">Chacha Pilates Studio</p>
+      <h2 class="ban__title" id="ban-title"><span data-split>Laissez celle que vous voulez devenir</span><em data-split>prendre le contrôle.</em></h2>
+      <a class="ban__cta" href="tel:+33616709400">
+        <svg viewBox="0 0 24 24"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+        Nous appeler
+      </a>
+    </div>
   </div>
 </section>
 
