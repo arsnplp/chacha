@@ -22,6 +22,7 @@
       --sage: #9ea286;
       --rose: #d9b7b5;
       --offwhite: #f1eeeb;
+      --white: #ffffff;
       /* texte sombre pour la lisibilite (pas une couleur de marque) */
       --ink: #23241e;
       /* alias */
@@ -106,7 +107,7 @@
     /* panneau mobile */
     .mobile-menu {
       position: fixed; inset: 0; z-index: 30;
-      background: var(--offwhite); color: var(--ink);
+      background: var(--white); color: var(--ink);
       display: flex; flex-direction: column; justify-content: space-between;
       padding: calc(var(--nav-h) + 8px) 24px 40px;
       opacity: 0; visibility: hidden; transform: translateY(-12px);
@@ -238,7 +239,7 @@
 
     /* ---------- PHILOSOPHIE ---------- */
     .philo {
-      background: var(--offwhite);
+      background: var(--white);
       color: var(--ink);
       padding: 200px 72px 140px;
     }
@@ -396,7 +397,7 @@
 
     /* ---------- REFORMER ---------- */
     .reformer {
-      background: var(--offwhite);
+      background: var(--white);
       color: var(--ink);
       padding: 140px 72px;
       overflow: hidden;
@@ -545,7 +546,7 @@
     .modal.open { opacity: 1; visibility: visible; }
     .modal-box {
       position: relative; width: min(560px, 100%); aspect-ratio: 1080 / 1433; max-height: 88vh;
-      background: var(--offwhite); border-radius: 6px; overflow: hidden;
+      background: var(--white); border-radius: 6px; overflow: hidden;
       transform: translateY(16px); transition: transform .35s ease;
       box-shadow: 0 40px 80px -30px rgba(35,36,30,.6);
     }
@@ -976,7 +977,7 @@
     .pm__ribbon{background:var(--rose); color:var(--ink)}
 
     /* ---------- BANNIÈRE FINALE ---------- */
-    .ban{background:var(--offwhite); padding:clamp(24px,3vw,48px) clamp(12px,2.4vw,40px) clamp(40px,4vw,64px)}
+    .ban{background: var(--white); padding:clamp(24px,3vw,48px) clamp(12px,2.4vw,40px) clamp(40px,4vw,64px)}
     .ban__card{
       position:relative; overflow:hidden; isolation:isolate; width:100%; max-width:1500px; margin:0 auto;
       border-radius:clamp(18px,2vw,28px); color:var(--offwhite); text-align:center;
@@ -1029,7 +1030,7 @@
 
     /* ---------- BOISSONS (éventail) ---------- */
     .drinks {
-      background: var(--offwhite); color: var(--ink);
+      background: var(--white); color: var(--ink);
       padding: 120px 72px 110px; overflow: hidden; text-align: center;
     }
     .drinks-inner { max-width: 1200px; margin: 0 auto; }
@@ -1198,7 +1199,7 @@
     .vs-grid { display: grid; grid-template-columns: 1.25fr .85fr; gap: 28px; align-items: stretch; }
     .vs-card { border-radius: 6px; padding: 48px 44px; position: relative; display: flex; flex-direction: column; overflow: visible; }
     .vs-card.reformer {
-      background: var(--offwhite); color: var(--ink);
+      background: var(--white); color: var(--ink);
       box-shadow: 0 40px 70px -35px rgba(35,36,30,.55);
       transform: translateY(-14px);
     }
@@ -1293,7 +1294,7 @@
     .is-in .xup.d1{transition-delay:.12s} .is-in .xup.d2{transition-delay:.24s} .is-in .xup.d3{transition-delay:.36s}
 
     /* ---------- PLANNING ---------- */
-    .pl{background:var(--offwhite); color:var(--ink); padding:clamp(80px,10vw,140px) 24px}
+    .pl{background: var(--white); color:var(--ink); padding:clamp(80px,10vw,140px) 24px}
     .pl__inner{max-width:1280px; margin:0 auto}
     .pl__head{display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr); gap:48px; align-items:end; margin-bottom:clamp(40px,5vw,64px)}
     .pl__head .xh2 em{color:var(--sage)}
@@ -1402,7 +1403,7 @@
     /* ---------- POP-UP OFFRE (sac offert) ---------- */
     .op{position:fixed; inset:0; z-index:60; display:flex; align-items:center; justify-content:center; padding:24px; background:rgba(35,36,30,.62); opacity:0; visibility:hidden; transition:opacity .45s ease, visibility 0s .45s}
     .op.open{opacity:1; visibility:visible; transition-delay:0s}
-    .op__box{position:relative; width:min(820px,100%); display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); background:var(--offwhite); color:var(--ink); border-radius:26px; overflow:hidden; box-shadow:0 50px 100px -40px rgba(35,36,30,.7); transform:translateY(30px) scale(.96); transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+    .op__box{position:relative; width:min(820px,100%); display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); background: var(--white); color:var(--ink); border-radius:26px; overflow:hidden; box-shadow:0 50px 100px -40px rgba(35,36,30,.7); transform:translateY(30px) scale(.96); transition:transform .6s cubic-bezier(.2,.8,.2,1)}
     .op.open .op__box{transform:none}
     .op__box:focus{outline:none}
     .xbtn:focus-visible,.op__later:focus-visible,.op__close:focus-visible{outline:2px solid var(--ink); outline-offset:3px}
@@ -1487,6 +1488,14 @@
     .gc__card--img::before{z-index:1; pointer-events:none}
     .gc__card2{background:var(--sage); border-radius:3.8% / 6%}
     
+
+    /* ---------- Planning bsport : fond blanc pur ---------- */
+    #bsport-widget-chacha .bs-setup-variable{background:var(--white) !important}
+    #bsport-widget-chacha .bs-marketplace-date-picker,
+    #bsport-widget-chacha .bs-marketplace-filter,
+    #bsport-widget-chacha .bs-offer-list-item{box-shadow:inset 0 0 0 1px rgba(35,36,30,.14) !important}
+    .pl__widget{box-shadow:0 0 0 1px rgba(35,36,30,.08), 0 30px 60px -44px rgba(35,36,30,.45)}
+    #bsport-widget-chacha .bs-calendar-search__container{border-radius:99px; box-shadow:inset 0 0 0 1px rgba(35,36,30,.14) !important; overflow:hidden}
   </style>
 </head>
 <body>
