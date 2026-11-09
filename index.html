@@ -1304,6 +1304,8 @@
     .lv-deb{--lv:var(--sage)} .lv-all{--lv:var(--offwhite)} .lv-int{--lv:var(--ink)} .lv-dou{--lv:var(--rose)}
     .pl__legend i{background:var(--lv); box-shadow:inset 0 0 0 1px rgba(35,36,30,.35)}
     .pl__tabs{display:none}
+    .pl__widget{background:#fff; border-radius:22px; padding:clamp(12px,2vw,28px); min-height:520px; box-shadow:0 30px 60px -44px rgba(35,36,30,.45)}
+    .pl__widget noscript p{margin:0; font-size:15px}
     .pl__grid{display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:12px}
     .pl__day{background:#fff; border-radius:18px; padding:18px 12px 14px; box-shadow:0 20px 40px -32px rgba(35,36,30,.35)}
     .pl__day h3{font-family:var(--serif); font-weight:700; font-size:24px; line-height:1; margin:0 0 14px; padding:0 4px 12px; border-bottom:1px solid rgba(35,36,30,.12)}
@@ -1335,6 +1337,8 @@
       .pl__slot b{margin:0; font-size:20px}
       .pl__slot small{margin:2px 0 0}
       .pl__foot .xbtn{width:100%}
+      .pl__widget{margin:0; padding:6px; border-radius:18px; overflow:hidden}
+      #bsport-widget-chacha .bs-calendar-search__container{min-width:0 !important; flex:0 0 78% !important}
     }
 
     /* ---------- OFFRE ABONNEMENT : SAC OFFERT ---------- */
@@ -1803,24 +1807,15 @@
   <div class="pl__inner">
     <div class="pl__head">
       <h2 class="xh2 xup" id="pl-title">Le planning<em>de la semaine.</em></h2>
-      <p class="pl__lead xup d1">Des cours tous les jours, du premier café au coucher du soleil. Tous nos cours se font sur Reformer, en petits groupes, pendant 50 minutes. Choisissez votre créneau, on s'occupe du reste.</p>
+      <p class="pl__lead xup d1">Le planning du studio en temps réel. Choisissez votre cours, votre créneau, et réservez votre place directement ici.</p>
     </div>
-    <ul class="pl__legend xup d2">
-      <li class="lv-deb"><i></i>Débutant</li><li class="lv-all"><i></i>Tous niveaux</li><li class="lv-int"><i></i>Intense</li><li class="lv-dou"><i></i>Douceur</li>
-    </ul>
-    <div class="pl__tabs" role="tablist" aria-label="Jour"><button role="tab" aria-selected="true" data-day="0">Lun</button><button role="tab" aria-selected="false" data-day="1">Mar</button><button role="tab" aria-selected="false" data-day="2">Mer</button><button role="tab" aria-selected="false" data-day="3">Jeu</button><button role="tab" aria-selected="false" data-day="4">Ven</button><button role="tab" aria-selected="false" data-day="5">Sam</button><button role="tab" aria-selected="false" data-day="6">Dim</button></div>
-    <div class="pl__grid xup d3">
-      <div class="pl__day on" data-dayp="0"><h3>Lundi</h3><ul><li class="pl__slot lv-all"><time>7h30</time><b>Signature</b><small>Tous niveaux</small></li><li class="pl__slot lv-deb"><time>9h00</time><b>Découverte</b><small>Débutant</small></li><li class="pl__slot lv-int"><time>12h15</time><b>Intense</b><small>Intense</small></li><li class="pl__slot lv-all"><time>18h00</time><b>Signature</b><small>Tous niveaux</small></li><li class="pl__slot lv-dou"><time>19h15</time><b>Douceur</b><small>Douceur</small></li></ul></div>
-      <div class="pl__day" data-dayp="1"><h3>Mardi</h3><ul><li class="pl__slot lv-int"><time>7h30</time><b>Intense</b><small>Intense</small></li><li class="pl__slot lv-dou"><time>9h30</time><b>Douceur</b><small>Douceur</small></li><li class="pl__slot lv-all"><time>12h15</time><b>Signature</b><small>Tous niveaux</small></li><li class="pl__slot lv-deb"><time>18h00</time><b>Découverte</b><small>Débutant</small></li><li class="pl__slot lv-int"><time>19h15</time><b>Intense</b><small>Intense</small></li></ul></div>
-      <div class="pl__day" data-dayp="2"><h3>Mercredi</h3><ul><li class="pl__slot lv-all"><time>9h00</time><b>Signature</b><small>Tous niveaux</small></li><li class="pl__slot lv-dou"><time>10h15</time><b>Douceur</b><small>Douceur</small></li><li class="pl__slot lv-int"><time>12h15</time><b>Intense</b><small>Intense</small></li><li class="pl__slot lv-deb"><time>17h30</time><b>Découverte</b><small>Débutant</small></li><li class="pl__slot lv-all"><time>18h45</time><b>Signature</b><small>Tous niveaux</small></li></ul></div>
-      <div class="pl__day" data-dayp="3"><h3>Jeudi</h3><ul><li class="pl__slot lv-all"><time>7h30</time><b>Signature</b><small>Tous niveaux</small></li><li class="pl__slot lv-deb"><time>9h00</time><b>Découverte</b><small>Débutant</small></li><li class="pl__slot lv-all"><time>12h15</time><b>Signature</b><small>Tous niveaux</small></li><li class="pl__slot lv-int"><time>18h00</time><b>Intense</b><small>Intense</small></li><li class="pl__slot lv-dou"><time>19h15</time><b>Douceur</b><small>Douceur</small></li></ul></div>
-      <div class="pl__day" data-dayp="4"><h3>Vendredi</h3><ul><li class="pl__slot lv-int"><time>7h30</time><b>Intense</b><small>Intense</small></li><li class="pl__slot lv-all"><time>9h30</time><b>Signature</b><small>Tous niveaux</small></li><li class="pl__slot lv-dou"><time>12h15</time><b>Douceur</b><small>Douceur</small></li><li class="pl__slot lv-all"><time>18h00</time><b>Signature</b><small>Tous niveaux</small></li></ul></div>
-      <div class="pl__day" data-dayp="5"><h3>Samedi</h3><ul><li class="pl__slot lv-all"><time>9h00</time><b>Signature</b><small>Tous niveaux</small></li><li class="pl__slot lv-deb"><time>10h15</time><b>Découverte</b><small>Débutant</small></li><li class="pl__slot lv-int"><time>11h30</time><b>Intense</b><small>Intense</small></li></ul></div>
-      <div class="pl__day" data-dayp="6"><h3>Dimanche</h3><ul><li class="pl__slot lv-dou"><time>9h30</time><b>Douceur</b><small>Douceur</small></li><li class="pl__slot lv-all"><time>10h45</time><b>Signature</b><small>Tous niveaux</small></li></ul></div>
+    <div class="pl__widget xup d2">
+      <div id="bsport-widget-chacha" class="pl__mount"></div>
+      <noscript><p>Activez JavaScript pour afficher le planning, ou appelez-nous au 06 16 70 94 00.</p></noscript>
     </div>
     <div class="pl__foot">
-      <p>Les places sont limitées pour garder des cours personnalisés. Réservez votre créneau par téléphone, on vous confirme tout de suite.</p>
-      <a class="xbtn xbtn--ink" href="tel:+33616709400"><svg viewBox="0 0 24 24"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Réserver un créneau</a>
+      <p>Les places sont limitées pour garder des cours personnalisés. Une question avant de réserver ? Appelez-nous, on vous répond tout de suite.</p>
+      <a class="xbtn xbtn--ink" href="tel:+33616709400"><svg viewBox="0 0 24 24"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Nous appeler</a>
     </div>
   </div>
 </section>
@@ -2347,14 +2342,21 @@
     new IntersectionObserver(function(e,o){ if(e[0].isIntersecting){ s.classList.add('is-in'); o.disconnect(); } },{threshold:.15}).observe(s);
   });
 })();
-/* planning : onglets mobile */
+/* planning : widget bsport officiel du studio (chargé à l'approche de la section) */
 (function(){
   var s=document.getElementById('planning'); if(!s) return;
-  var tabs=s.querySelectorAll('.pl__tabs button'), days=s.querySelectorAll('.pl__day');
-  var today=(new Date().getDay()+6)%7;
-  function show(i){ tabs.forEach(function(t,k){ t.setAttribute('aria-selected', k===i); }); days.forEach(function(d,k){ d.classList.toggle('on', k===i); }); }
-  tabs.forEach(function(t,k){ t.addEventListener('click',function(){ show(k); }); });
-  show(today);
+  var loaded=false;
+  function mount(cfg,n){ n=n||1; if(n>60) return; if(!window.BsportWidget) return setTimeout(function(){ mount(cfg,n+1); },100*n); window.BsportWidget.mount(cfg); }
+  function load(){
+    if(loaded) return; loaded=true;
+    if(!window.BsportWidget && !document.getElementById('bsport-widget-cdn')){
+      var m=document.createElement('script'); m.id='bsport-widget-cdn'; m.src='https://cdn.bsport.io/scripts/widget.js'; document.head.appendChild(m);
+    }
+    mount({ parentElement:'bsport-widget-chacha', companyId:5694, franchiseId:null, dialogMode:1, widgetType:'calendar', showFab:false, fullScreenPopup:false, styles:undefined, config:{ calendar:{} } });
+  }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e,o){ if(e[0].isIntersecting){ load(); o.disconnect(); } },{rootMargin:'800px 0px'}).observe(s);
+  } else load();
 })();
 /* gift card : montant */
 (function(){
