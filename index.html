@@ -1450,6 +1450,32 @@
     @media (max-width:1240px) and (min-width:901px){
       .nav ul{gap:22px} .nav{font-size:12px}
     }
+
+    /* ---------- SAC DÉTOURÉ ---------- */
+    .of__stage{position:relative; aspect-ratio:1/1.05; display:grid; place-items:center}
+    .of__disc{position:absolute; left:50%; top:50%; width:88%; aspect-ratio:1; border-radius:50%; background:var(--offwhite); transform:translate(-50%,-50%) scale(.6); opacity:0; transition:transform 1.4s cubic-bezier(.2,.8,.2,1), opacity 1s ease}
+    .of__disc::after{content:""; position:absolute; inset:-18px; border-radius:50%; border:1px solid rgba(241,238,235,.9)}
+    .of.is-in .of__disc{transform:translate(-50%,-50%) scale(1); opacity:1}
+    .of__bag{position:relative; z-index:1; width:82%; height:auto; filter:drop-shadow(0 28px 30px rgba(35,36,30,.18)); transform:translateY(40px) rotate(-6deg); opacity:0; transition:transform 1.4s cubic-bezier(.2,.8,.2,1) .2s, opacity 1s ease .2s}
+    .of.is-in .of__bag{transform:rotate(-4deg); opacity:1; animation:of-bag 6s ease-in-out 1.8s infinite}
+    @keyframes of-bag{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(-2deg) translateY(-12px)}}
+    .of__shadow{position:absolute; z-index:0; left:50%; bottom:4%; width:56%; height:22px; border-radius:50%; background:radial-gradient(closest-side,rgba(35,36,30,.28),rgba(35,36,30,0)); transform:translateX(-50%); animation:of-sh 6s ease-in-out 1.8s infinite}
+    @keyframes of-sh{0%,100%{transform:translateX(-50%) scale(1); opacity:1}50%{transform:translateX(-50%) scale(.86); opacity:.7}}
+    .of__badge{z-index:2; top:8%; right:2%}
+    .op__media{background:var(--rose); display:grid; place-items:center; overflow:hidden}
+    .op__media::before{content:""; position:absolute; left:50%; top:52%; width:78%; aspect-ratio:1; border-radius:50%; background:var(--offwhite); transform:translate(-50%,-50%)}
+    .op__media img{position:relative; inset:auto; width:78%; height:auto; object-fit:contain; filter:drop-shadow(0 22px 24px rgba(35,36,30,.2)); transform:rotate(-4deg)}
+    .op.open .op__media img{animation:of-bag 6s ease-in-out .6s infinite}
+    .op__tag{background:var(--ink); color:var(--offwhite); text-shadow:none; z-index:1}
+    @media (max-width:640px){
+      .op__media img{width:52%; height:auto}
+      .op__media::before{width:auto; height:88%}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .of__bag,.of__disc,.of__shadow,.op__media img{animation:none!important; transition:none!important; opacity:1}
+    }
+    /* tagline du header plus basse */
+    .tagline{top:66%}
   </style>
 </head>
 <body>
@@ -1824,7 +1850,7 @@
   <div class="of__ghost" aria-hidden="true">club</div>
   <div class="of__inner">
     <div class="of__media xup">
-      <div class="of__frame"><img src="image/sac-chacha.jpg" alt="Tote bag blanc Chacha Pilates Club, logo vert sauge" loading="lazy"></div>
+      <div class="of__stage"><span class="of__disc" aria-hidden="true"></span><img class="of__bag" src="image/sac-chacha.png" alt="Tote bag blanc Chacha Pilates Club, logo vert sauge" loading="lazy"><span class="of__shadow" aria-hidden="true"></span></div>
       <div class="of__badge" aria-hidden="true"><span>Offert<small>avec l'abonnement</small></span></div>
     </div>
     <div class="of__text">
@@ -2321,7 +2347,7 @@
 <div class="op" id="offre-pop" role="dialog" aria-modal="true" aria-labelledby="op-title" aria-hidden="true">
   <div class="op__box" tabindex="-1">
     <button class="op__close" type="button" data-op-close aria-label="Fermer"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    <div class="op__media"><img src="image/sac-chacha.jpg" alt="Tote bag Chacha Pilates Club" loading="lazy"><span class="op__tag">Cadeau</span></div>
+    <div class="op__media"><img src="image/sac-chacha.png" alt="Tote bag Chacha Pilates Club" loading="lazy"><span class="op__tag">Cadeau</span></div>
     <div class="op__body">
       <h2 id="op-title">Votre sac Chacha<em>vous attend.</em></h2>
       <p>Abonnez-vous au studio et repartez avec le tote bag Chacha Pilates Club, offert. Appelez-nous, on vous trouve le créneau idéal en deux minutes.</p>
