@@ -1496,6 +1496,58 @@
     #bsport-widget-chacha .bs-offer-list-item{box-shadow:inset 0 0 0 1px rgba(35,36,30,.14) !important}
     .pl__widget{box-shadow:0 0 0 1px rgba(35,36,30,.08), 0 30px 60px -44px rgba(35,36,30,.45)}
     #bsport-widget-chacha .bs-calendar-search__container{border-radius:99px; box-shadow:inset 0 0 0 1px rgba(35,36,30,.14) !important; overflow:hidden}
+
+    /* ---------- CARTES (choix + achat bsport) ---------- */
+    .gc__pick{margin-top:30px}
+    .gc__acts{display:flex; flex-wrap:wrap; gap:6px; padding:5px; background:rgba(255,255,255,.6); border-radius:99px; width:max-content; max-width:100%}
+    .gc__acts button{border:0; background:transparent; color:var(--ink); padding:10px 16px; border-radius:99px; font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; transition:background .3s, color .3s}
+    .gc__acts button[aria-selected="true"]{background:var(--ink); color:var(--white)}
+    .gc__packs{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:14px}
+    .gc__packs button{display:flex; flex-direction:column; align-items:flex-start; gap:4px; padding:12px 14px; border:0; border-radius:16px; background:var(--white); color:var(--ink); font-family:var(--sans); text-align:left; cursor:pointer; box-shadow:inset 0 0 0 1px rgba(35,36,30,.12); transition:box-shadow .3s, background .3s, color .3s, transform .3s}
+    .gc__packs button:hover{transform:translateY(-2px)}
+    .gc__packs button span{font-size:12px; font-weight:600; letter-spacing:.06em}
+    .gc__packs button b{font-family:var(--serif); font-weight:700; font-size:22px; line-height:1}
+    .gc__packs button[aria-checked="true"]{background:var(--ink); color:var(--white); box-shadow:none}
+    .gc__detail{margin:14px 0 0; font-size:14px; line-height:1.6; min-height:1.6em}
+    .gc__detail b{font-weight:600}
+    .gc__cta button{font-family:var(--sans)}
+    .gc__note{font-size:13px; margin-top:16px}
+    .gc__note a{color:var(--ink); font-weight:600}
+    .gc__stage{flex-direction:column}
+    .gc__caption{position:relative; z-index:2; margin:34px 0 0; font-family:var(--serif); font-weight:700; font-size:22px; text-align:center}
+    @media (max-width:860px){
+      .gc__packs{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .gc__caption{margin-top:22px; font-size:19px}
+      .gc__acts{width:auto; display:grid; grid-template-columns:1fr 1fr; gap:4px; border-radius:22px}
+      .gc__acts button{padding:11px 8px; font-size:11px; letter-spacing:.1em}
+    }
+
+    .pk{position:fixed; inset:0; z-index:70; display:flex; align-items:center; justify-content:center; padding:24px; background:rgba(35,36,30,.62); opacity:0; visibility:hidden; transition:opacity .4s ease, visibility 0s .4s}
+    .pk.open{opacity:1; visibility:visible; transition-delay:0s}
+    .pk__box{width:min(980px,100%); height:min(86vh,900px); display:flex; flex-direction:column; background:var(--white); color:var(--ink); border-radius:26px; overflow:hidden; box-shadow:0 50px 100px -40px rgba(35,36,30,.7); transform:translateY(30px) scale(.97); transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+    .pk.open .pk__box{transform:none}
+    .pk__box:focus{outline:none}
+    .pk__head{display:flex; align-items:flex-start; justify-content:space-between; gap:20px; padding:26px 30px 20px; border-bottom:1px solid rgba(35,36,30,.1)}
+    .pk__head h2{margin:0; font-family:var(--serif); font-weight:700; font-size:36px; line-height:1}
+    .pk__choice{margin:10px 0 0; font-size:14px; line-height:1.6}
+    .pk__choice:empty{display:none}
+    .pk__choice b{font-weight:600}
+    .pk__close{flex:none; width:44px; height:44px; border-radius:50%; border:0; background:var(--rose); color:var(--white); display:grid; place-items:center; cursor:pointer; transition:background .3s}
+    .pk__close:hover{background:var(--ink)}
+    .pk__close svg{width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:2.2}
+    .pk__body{flex:1; overflow:auto; -webkit-overflow-scrolling:touch; padding:8px 18px 24px}
+    .pk__loading{margin:40px 0; text-align:center; font-size:14px}
+    #bsport-widget-pass .bs-setup-variable{background:var(--white) !important}
+    #bsport-widget-pass .pk-hit{border-radius:18px; box-shadow:0 0 0 3px var(--rose), 0 18px 40px -24px rgba(35,36,30,.5) !important; transition:box-shadow .4s ease}
+    .gc__note a{white-space:nowrap}
+    @media (max-width:640px){
+      .pk{padding:0; align-items:flex-end}
+      .pk__box{height:94svh; border-radius:24px 24px 0 0; transform:translateY(100%)}
+      .pk__head{padding:20px 20px 16px}
+      .pk__head h2{font-size:30px}
+      .pk__body{padding:4px 8px calc(16px + env(safe-area-inset-bottom))}
+    }
+    @media (prefers-reduced-motion:reduce){ .pk,.pk__box{transition:none!important} }
   </style>
 </head>
 <body>
@@ -1509,7 +1561,7 @@
       <li><a href="#coachs">Coachs</a></li>
       <li><a href="#planning">Planning</a></li>
       <li><a href="#offres">Offres</a></li>
-      <li><a href="#gift-card">Gift card</a></li>
+      <li><a href="#gift-card">Cartes</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-right">
@@ -1528,7 +1580,7 @@
       <li><a href="#coachs">Coachs<small>04</small></a></li>
       <li><a href="#planning">Planning<small>05</small></a></li>
       <li><a href="#offres">Sac offert<small>06</small></a></li>
-      <li><a href="#gift-card">Gift card<small>07</small></a></li>
+      <li><a href="#gift-card">Cartes &amp; cadeaux<small>07</small></a></li>
       <li><a href="#boissons">Boissons<small>08</small></a></li>
       <li><a href="#contact">Contact<small>09</small></a></li>
     </ul>
@@ -1893,25 +1945,25 @@
   <div class="gc__inner">
     <div class="gc__text">
       <h2 class="xh2 xup" id="gc-title">Offrez un moment<em>pour soi.</em></h2>
-      <p class="xup d1">La carte cadeau Chacha, c'est un cours de Reformer, une parenthèse lumineuse et une boisson au coffee shop. Le cadeau parfait pour une amie, une sœur, une maman.</p>
-      <ul class="gc__amounts xup d2" aria-label="Montant de la carte">
-        <li><button type="button" data-amount="50 €" aria-pressed="false">50 €</button></li>
-        <li><button type="button" data-amount="100 €" aria-pressed="true">100 €</button></li>
-        <li><button type="button" data-amount="150 €" aria-pressed="false">150 €</button></li>
-        <li><button type="button" data-amount="Libre" aria-pressed="false">Montant libre</button></li>
-      </ul>
-      <p class="gc__note xup d2">Commandez-la par téléphone ou directement au studio, on la prépare pour vous.</p>
-      <div class="gc__cta xup d3">
-        <a class="xbtn xbtn--ink" href="tel:+33616709400"><svg viewBox="0 0 24 24"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Commander</a>
-        <a class="xbtn xbtn--line" href="mailto:chachapilates@gmail.com?subject=Carte%20cadeau%20Chacha">Par e-mail</a>
+      <p class="xup d1">Une séance découverte, un pack de dix cours, une carte Duo à partager… Choisissez la carte, réglez-la en ligne, et offrez-la ou gardez-la pour vous.</p>
+      <div class="gc__pick xup d2">
+        <div class="gc__acts" role="tablist" aria-label="Activité" data-gc-acts></div>
+        <div class="gc__packs" role="radiogroup" aria-label="Carte" data-gc-packs></div>
+        <p class="gc__detail" data-gc-detail aria-live="polite"></p>
       </div>
+      <div class="gc__cta xup d3">
+        <button type="button" class="xbtn xbtn--ink" data-pk-open><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Acheter cette carte</button>
+        <button type="button" class="xbtn xbtn--line" data-pk-open data-pk-all>Toutes nos cartes</button>
+      </div>
+      <p class="gc__note xup d3">Paiement sécurisé en ligne. Une question ? <a href="tel:+33616709400">06 16 70 94 00</a></p>
     </div>
     <div class="gc__stage xup d1" aria-hidden="true">
       <div class="gc__card2"></div>
       <div class="gc__card gc__card--img">
         <img src="image/carte-cadeau.jpg" alt="" loading="lazy">
-        <div class="gc__value" data-gc-value>100 €</div>
+        <div class="gc__value" data-gc-value>250 €</div>
       </div>
+      <p class="gc__caption" data-gc-caption>Pack 10 séances Reformer</p>
     </div>
   </div>
 </section>
@@ -2016,7 +2068,7 @@
           <li><a href="#reformer">Le Reformer</a></li>
           <li><a href="#planning">Le planning</a></li>
           <li><a href="#offres">Abonnement · sac offert</a></li>
-          <li><a href="#gift-card">Gift card</a></li>
+          <li><a href="#gift-card">Cartes</a></li>
         </ul>
       </div>
     </div>
@@ -2364,6 +2416,21 @@
 })();
 </script>
 
+<div class="pk" id="cartes-pop" role="dialog" aria-modal="true" aria-labelledby="pk-title" aria-hidden="true">
+  <div class="pk__box" tabindex="-1">
+    <header class="pk__head">
+      <div>
+        <h2 id="pk-title">Nos cartes</h2>
+        <p class="pk__choice" data-pk-choice></p>
+      </div>
+      <button type="button" class="pk__close" data-pk-close aria-label="Fermer"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </header>
+    <div class="pk__body">
+      <div id="bsport-widget-pass" class="pk__mount"><p class="pk__loading">Chargement des cartes…</p></div>
+    </div>
+  </div>
+</div>
+
 <div class="op" id="offre-pop" role="dialog" aria-modal="true" aria-labelledby="op-title" aria-hidden="true">
   <div class="op__box" tabindex="-1">
     <button class="op__close" type="button" data-op-close aria-label="Fermer"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
@@ -2404,15 +2471,83 @@
     new IntersectionObserver(function(e,o){ if(e[0].isIntersecting){ load(); o.disconnect(); } },{rootMargin:'800px 0px'}).observe(s);
   } else load();
 })();
-/* gift card : montant */
+/* cartes : choix (tarifs bsport du studio) + achat dans une fenêtre */
 (function(){
+  var PACKS={"Reformer": [{"s": "Découverte", "n": "Séance découverte Reformer", "p": 15, "d": "1 séance · valable 1 mois"}, {"s": "Séance", "n": "Séance unique Reformer", "p": 27, "d": "1 séance · valable 1 mois"}, {"s": "Duo", "n": "Carte Duo Reformer", "p": 50, "d": "2 personnes · 25 € par personne · valable 1 mois"}, {"s": "5 séances", "n": "Pack 5 séances Reformer", "p": 130, "d": "26 € la séance · valable 2 mois"}, {"s": "10 séances", "n": "Pack 10 séances Reformer", "p": 250, "d": "25 € la séance · valable 6 mois"}, {"s": "20 séances", "n": "Pack 20 séances Reformer", "p": 480, "d": "24 € la séance · valable 12 mois"}], "Hot Pilates": [{"s": "Découverte", "n": "Séance découverte Hot Pilates", "p": 20, "d": "1 séance · valable 1 mois"}, {"s": "Séance", "n": "Séance unique Hot Pilates", "p": 25, "d": "1 séance · valable 1 mois"}, {"s": "10 séances", "n": "Pack 10 séances Hot Pilates", "p": 230, "d": "23 € la séance · valable 6 mois"}, {"s": "20 séances", "n": "Pack 20 séances Hot Pilates", "p": 400, "d": "20 € la séance · valable 12 mois"}], "Yoga": [{"s": "Découverte", "n": "Séance découverte Yoga", "p": 15, "d": "1 séance · valable 1 mois"}, {"s": "Séance", "n": "Séance unique Yoga", "p": 20, "d": "1 séance · valable 1 mois"}, {"s": "10 séances", "n": "Pack 10 séances Yoga", "p": 170, "d": "17 € la séance · valable 6 mois"}, {"s": "20 séances", "n": "Pack 20 séances Yoga", "p": 300, "d": "15 € la séance · valable 12 mois"}], "Stretching": [{"s": "Découverte", "n": "Séance découverte Stretching", "p": 15, "d": "1 séance · valable 1 mois"}, {"s": "Séance", "n": "Séance unique Stretching", "p": 20, "d": "1 séance · valable 1 mois"}]};
   var s=document.getElementById('gift-card'); if(!s) return;
-  var v=s.querySelector('[data-gc-value]'), bs=s.querySelectorAll('[data-amount]');
-  bs.forEach(function(b){ b.addEventListener('click',function(){
-    bs.forEach(function(x){ x.setAttribute('aria-pressed', x===b); });
-    v.classList.add('swap');
-    setTimeout(function(){ var f=b.dataset.amount==='Libre'; v.textContent = f ? 'Montant libre' : b.dataset.amount; v.classList.toggle('free',f); v.classList.remove('swap'); },220);
-  }); });
+  var acts=s.querySelector('[data-gc-acts]'), packs=s.querySelector('[data-gc-packs]'), detail=s.querySelector('[data-gc-detail]');
+  var val=s.querySelector('[data-gc-value]'), cap=s.querySelector('[data-gc-caption]');
+  var cur={a:'Reformer', i:4};
+  function eur(n){ return n+' €'; }
+  function renderActs(){
+    acts.innerHTML='';
+    Object.keys(PACKS).forEach(function(k){
+      var b=document.createElement('button'); b.type='button'; b.setAttribute('role','tab'); b.textContent=k;
+      b.setAttribute('aria-selected', k===cur.a);
+      b.addEventListener('click',function(){ if(cur.a===k) return; cur.a=k; var l=PACKS[k]; cur.i=Math.min(l.length-1, l.length>4?4:l.length-2); render(); });
+      acts.appendChild(b);
+    });
+  }
+  function renderPacks(){
+    packs.innerHTML='';
+    PACKS[cur.a].forEach(function(p,i){
+      var b=document.createElement('button'); b.type='button'; b.setAttribute('role','radio'); b.setAttribute('aria-checked', i===cur.i);
+      b.innerHTML='<span>'+p.s+'</span><b>'+eur(p.p)+'</b>';
+      b.addEventListener('click',function(){ cur.i=i; render(true); });
+      packs.appendChild(b);
+    });
+  }
+  function show(){
+    var p=PACKS[cur.a][cur.i];
+    detail.innerHTML='<b>'+p.n+'</b> · '+p.d;
+    val.classList.add('swap');
+    setTimeout(function(){ val.textContent=eur(p.p); cap.textContent=p.n; val.classList.remove('swap'); },200);
+  }
+  function render(onlyPacks){ if(!onlyPacks) renderActs(); renderPacks(); show(); }
+  render();
+
+  /* fenêtre d'achat */
+  var pop=document.getElementById('cartes-pop'), choice=pop.querySelector('[data-pk-choice]'), mounted=false, last=null;
+  function mount(n){ n=n||1; if(n>80) return; if(!window.BsportWidget) return setTimeout(function(){ mount(n+1); },100*Math.min(n,10));
+    var m=document.getElementById('bsport-widget-pass'); m.innerHTML='';
+    window.BsportWidget.mount({ parentElement:'bsport-widget-pass', companyId:5694, franchiseId:null, dialogMode:1, widgetType:'pass', showFab:false, fullScreenPopup:false, styles:undefined, config:{ pass:{ paymentPackCategories:[], privatePassCategories:[] } } });
+  }
+  function ensure(){
+    if(mounted) return; mounted=true;
+    if(!window.BsportWidget && !document.getElementById('bsport-widget-cdn')){
+      var sc=document.createElement('script'); sc.id='bsport-widget-cdn'; sc.src='https://cdn.bsport.io/scripts/widget.js'; document.head.appendChild(sc);
+    }
+    mount();
+  }
+  var KEYS={'Reformer':'reformer','Hot Pilates':'hot pilates','Yoga':'yoga','Stretching':'stretching'};
+  function focusPack(p, act, n){
+    n=n||0; if(n>60) return;
+    var root=document.getElementById('bsport-widget-pass'), body=pop.querySelector('.pk__body');
+    var price=p.p.toFixed(2)+' €', key=KEYS[act], hit=null;
+    root.querySelectorAll('.bs-pass-card').forEach(function(c){
+      if(hit) return;
+      var t=c.querySelector('.bs-paymentpack-card__title'); if(!t) return;
+      var title=t.textContent.toLowerCase(), txt=c.textContent.replace(/\s+/g,' ');
+      if(title.indexOf(key)>-1 && txt.indexOf(price)>-1) hit=c;
+    });
+    if(!hit) return setTimeout(function(){ focusPack(p, act, n+1); },250);
+    root.querySelectorAll('.pk-hit').forEach(function(e){ e.classList.remove('pk-hit'); });
+    hit.classList.add('pk-hit');
+    body.scrollTo({ top: hit.getBoundingClientRect().top - body.getBoundingClientRect().top + body.scrollTop - 24, behavior:'smooth' });
+  }
+  function open(all){
+    var p=PACKS[cur.a][cur.i];
+    choice.innerHTML = all ? '' : 'Votre choix : <b>'+p.n+' · '+eur(p.p)+'</b>. Retrouvez-la ci-dessous dans la catégorie '+cur.a+'.';
+    last=document.activeElement; ensure(); if(!all) focusPack(p, cur.a);
+    pop.classList.add('open'); pop.setAttribute('aria-hidden','false'); document.body.classList.add('modal-lock');
+    setTimeout(function(){ pop.querySelector('.pk__box').focus({preventScroll:true}); },350);
+  }
+  function close(){ pop.classList.remove('open'); pop.setAttribute('aria-hidden','true'); document.body.classList.remove('modal-lock'); last && last.focus && last.focus({preventScroll:true}); }
+  document.querySelectorAll('[data-pk-open]').forEach(function(b){ b.addEventListener('click',function(){ open(b.hasAttribute('data-pk-all')); }); });
+  pop.querySelector('[data-pk-close]').addEventListener('click',close);
+  pop.addEventListener('click',function(e){ if(e.target===pop) close(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && pop.classList.contains('open')) close(); });
+  window.chachaCartes=open;
 })();
 /* pop-up offre : 40 s après le premier scroll, une fois par session */
 (function(){
