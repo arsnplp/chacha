@@ -1548,10 +1548,50 @@
       .pk__body{padding:4px 8px calc(16px + env(safe-area-inset-bottom))}
     }
     @media (prefers-reduced-motion:reduce){ .pk,.pk__box{transition:none!important} }
+
+    /* ---------- BANDEAU ÉTUDIANT ---------- */
+    .promo{position:relative; z-index:45; background:var(--rose); color:var(--ink); padding:10px 56px; font-size:14px; line-height:1.45}
+    .promo__in{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; text-align:center}
+    .promo__badge{flex:none; font-family:var(--sans); font-weight:800; font-size:15px; letter-spacing:.02em; line-height:1; background:var(--ink); color:var(--white); padding:8px 12px 7px; border-radius:99px; transform:rotate(-4deg); animation:promo-wig 4s ease-in-out infinite}
+    @keyframes promo-wig{0%,86%,100%{transform:rotate(-4deg)}90%{transform:rotate(4deg) scale(1.08)}94%{transform:rotate(-6deg)}}
+    .promo__txt{margin:0}
+    .promo__txt b{font-weight:700}
+    .promo__cta{flex:none; display:inline-flex; align-items:center; gap:8px; background:var(--white); color:var(--ink); text-decoration:none; padding:9px 16px; border-radius:99px; font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; transition:background .3s, color .3s}
+    .promo__cta:hover{background:var(--ink); color:var(--white)}
+    .promo__cta svg{width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2}
+    .promo__x{position:absolute; right:12px; top:50%; translate:0 -50%; width:34px; height:34px; border:0; border-radius:50%; background:transparent; color:var(--ink); display:grid; place-items:center; cursor:pointer}
+    .promo__x:hover{background:rgba(255,255,255,.5)}
+    .promo__x svg{width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2}
+    .promo.hide{display:none}
+    @media (max-width:760px){
+      .promo{padding:12px 44px 12px 16px; font-size:13px}
+      .promo__in{justify-content:flex-start; text-align:left; gap:10px 12px}
+      .promo__badge{font-size:13px}
+      .promo__txt{flex:1 1 200px}
+      .promo__how{display:block}
+      .promo__cta{padding:8px 14px; font-size:10px}
+      .promo__x{top:14px; translate:0 0}
+    }
+    @media (prefers-reduced-motion:reduce){ .promo__badge{animation:none} }
+    .pk__choice a{color:var(--ink); font-weight:600}
+    /* Reformer : mention Stretching */
+    .reformer-points li.is-new b{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+    .new-tag{font-family:var(--sans); font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; background:var(--rose); color:var(--ink); padding:6px 10px; border-radius:99px; line-height:1}
+    /* cartes : libellés sans prix */
+    .gc__packs button{justify-content:center; min-height:58px}
+    .gc__packs button b{font-size:20px}
   </style>
 </head>
 <body>
 
+<div class="promo" id="promo-etudiant" role="region" aria-label="Offre étudiante">
+  <div class="promo__in">
+    <span class="promo__badge">−10 %</span>
+    <p class="promo__txt"><b>Étudiant·e ?</b> 10 % de réduction sur tous les cours et toutes les cartes. <span class="promo__how">Demandez votre code promo par e-mail.</span></p>
+    <a class="promo__cta" href="mailto:chachapilates@gmail.com?subject=Code%20promo%20%C3%A9tudiant&body=Bonjour%2C%0A%0AJe%20suis%20%C3%A9tudiant%C2%B7e%20et%20j%27aimerais%20recevoir%20le%20code%20promo%20de%2010%20%25.%0A%0AMerci%20!">Recevoir mon code<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+  <button type="button" class="promo__x" data-promo-close aria-label="Masquer l'offre étudiante"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
 <header class="hero">
   <nav class="nav">
     <a href="#" class="nav-logo">Chacha</a>
@@ -1644,9 +1684,9 @@
         <img src="image/reformer.png" alt="Cours de Reformer">
         <div class="label"><b>Reformer</b><p>Renforcement profond et précision du geste sur machine, en petit groupe.</p></div>
       </a>
-      <a href="#pilates-mat" class="cours-card">
-        <img src="image/pilate%20mat.png" alt="Cours de Pilates Mat">
-        <div class="label"><b>Pilates Mat</b><p>Les fondamentaux au sol pour gainer, allonger et mieux ressentir son corps.</p></div>
+      <a href="#hot-pilates" class="cours-card">
+        <img src="image/pilate%20mat.png" alt="Cours de Hot Pilates">
+        <div class="label"><b>Hot Pilates</b><p>Le Pilates dans une salle chauffée : on gaine, on transpire et on relâche les tensions en profondeur.</p></div>
       </a>
       <a href="#yoga" class="cours-card">
         <img src="image/yog.png" alt="Cours de Yoga">
@@ -1671,6 +1711,7 @@
           <li><b>Cours en petit groupe</b><p>Six Reformers, six élèves maximum. Chaque posture est corrigée, chaque progression est accompagnée.</p></li>
           <li><b>Pour tous les niveaux</b><p>Du premier cours aux flows avancés, la résistance des ressorts s'adapte à votre corps et à vos objectifs.</p></li>
           <li><b>Corps gainé, esprit posé</b><p>Cinquante minutes de contrôle, de respiration et d'intensité maîtrisée. On ressort plus fort, plus long, plus léger.</p></li>
+          <li class="is-new"><b>Stretching sur Reformer <span class="new-tag">Nouveau</span></b><p>Les ressorts accompagnent chaque étirement. Un cours tout en douceur pour gagner en mobilité, relâcher le dos et bien récupérer.</p></li>
         </ul>
         <a href="https://www.instagram.com/p/Daxuh0rjCJp/?img_index=1" class="reformer-cta" data-insta-open="https://www.instagram.com/p/Daxuh0rjCJp/embed/">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -1779,29 +1820,29 @@
   </div>
 </section>
 
-<section class="pm" id="pilates-mat" aria-labelledby="pm-title">
-  <div class="pm__ghost" aria-hidden="true">M</div>
+<section class="pm" id="hot-pilates" aria-labelledby="pm-title">
+  <div class="pm__ghost" aria-hidden="true">H</div>
   <div class="pm__inner">
     <div class="pm__visual">
       <div class="pm__line" aria-hidden="true"></div>
       <div class="pm__pill">
         <video src="video/pilates-mat/pilates-mat.mp4" poster="image/pilates-mat-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
       </div>
-      <div class="pm__sticker" aria-hidden="true"><span>au sol<small>sur tapis</small></span></div>
+      <div class="pm__sticker" aria-hidden="true"><span>hot<small>salle chauffée</small></span></div>
     </div>
     <div class="pm__content">
       <p class="pm__kicker" data-up="1">Au studio</p>
       <h2 class="pm__title" id="pm-title">
-        <span class="big" data-split>Pilates Mat,</span>
-        <span class="it" data-split>en profondeur.</span>
+        <span class="big" data-split>Hot Pilates,</span>
+        <span class="it" data-split>tout en chaleur.</span>
       </h2>
       <p class="pm__text" data-up="2">
-        Le Pilates au sol, sans machine, juste vous et votre tapis.
-        Un travail lent et précis qui gaine en profondeur, redresse la posture
-        et réveille des muscles que l'on oublie.
+        Le Pilates dans une salle chauffée. La chaleur détend les muscles
+        et aide à gagner en souplesse, pendant qu'un travail lent et précis
+        gaine en profondeur. On transpire, on respire, on ressort léger.
       </p>
       <ul class="pm__list" data-up="3">
-        <li><span>01</span><b>Au sol</b></li>
+        <li><span>01</span><b>Salle chauffée</b></li>
         <li><span>02</span><b>Gainage profond</b></li>
         <li><span>03</span><b>Tous niveaux</b></li>
       </ul>
@@ -1811,7 +1852,7 @@
       </a>
     </div>
   </div>
-  <div class="pm__ribbon" aria-hidden="true"><div class="pm__track"><span>Pilates Mat<i>·</i></span><span>au sol<i>·</i></span><span>gainage profond<i>·</i></span><span>contrôle<i>·</i></span><span>respiration<i>·</i></span><span>Pilates Mat<i>·</i></span><span>au sol<i>·</i></span><span>gainage profond<i>·</i></span><span>contrôle<i>·</i></span><span>respiration<i>·</i></span><span>Pilates Mat<i>·</i></span><span>au sol<i>·</i></span><span>gainage profond<i>·</i></span><span>contrôle<i>·</i></span><span>respiration<i>·</i></span><span>Pilates Mat<i>·</i></span><span>au sol<i>·</i></span><span>gainage profond<i>·</i></span><span>contrôle<i>·</i></span><span>respiration<i>·</i></span></div></div>
+  <div class="pm__ribbon" aria-hidden="true"><div class="pm__track"><span>Hot Pilates<i>·</i></span><span>salle chauffée<i>·</i></span><span>gainage profond<i>·</i></span><span>souplesse<i>·</i></span><span>respiration<i>·</i></span><span>Hot Pilates<i>·</i></span><span>salle chauffée<i>·</i></span><span>gainage profond<i>·</i></span><span>souplesse<i>·</i></span><span>respiration<i>·</i></span><span>Hot Pilates<i>·</i></span><span>salle chauffée<i>·</i></span><span>gainage profond<i>·</i></span><span>souplesse<i>·</i></span><span>respiration<i>·</i></span><span>Hot Pilates<i>·</i></span><span>salle chauffée<i>·</i></span><span>gainage profond<i>·</i></span><span>souplesse<i>·</i></span><span>respiration<i>·</i></span></div></div>
 </section>
 <section class="co" id="coachs" aria-labelledby="co-title">
   <div class="co__ghost" aria-hidden="true">l'équipe</div>
@@ -1855,14 +1896,14 @@
       <div class="co__frame" data-photo>
         <img src="image/coachs/coach-3.jpg" alt="Léa, coach chez Chacha" loading="lazy" onload="this.parentNode.classList.add('has-img')" onerror="this.style.display='none'">
         <div class="co__ph" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="17" r="8"/><path d="M9 42c1.8-8.4 8-13 15-13s13.2 4.6 15 13"/></svg><small>Photo coach 3</small></div>
-        <span class="co__spec">Pilates Mat</span>
+        <span class="co__spec">Hot Pilates</span>
       </div>
       <div class="co__line" aria-hidden="true"></div>
       <div class="co__body">
         <h3 class="co__name">Léa</h3>
-        <span class="co__role">Pilates Mat</span>
-        <p class="co__desc">Spécialiste du travail au sol, elle vous apprend à trouver votre centre et à respirer juste à chaque mouvement.</p>
-        <ul class="co__tags"><li>Pilates Mat</li><li>Respiration</li></ul>
+        <span class="co__role">Hot Pilates</span>
+        <p class="co__desc">Elle anime le Hot Pilates : dans la chaleur du studio, elle vous apprend à trouver votre centre et à respirer juste à chaque mouvement.</p>
+        <ul class="co__tags"><li>Hot Pilates</li><li>Respiration</li></ul>
       </div>
     </li>
     <li class="co__card" style="--k:3">
@@ -1961,7 +2002,7 @@
       <div class="gc__card2"></div>
       <div class="gc__card gc__card--img">
         <img src="image/carte-cadeau.jpg" alt="" loading="lazy">
-        <div class="gc__value" data-gc-value>250 €</div>
+        <div class="gc__value" data-gc-value>10 séances</div>
       </div>
       <p class="gc__caption" data-gc-caption>Pack 10 séances Reformer</p>
     </div>
@@ -2035,7 +2076,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <div class="logo">Chacha</div>
-        <div class="tag">Pilates · Reformer · Yoga · Coffee shop</div>
+        <div class="tag">Reformer · Hot Pilates · Yoga · Coffee shop</div>
         <p>Un studio lumineux à 5 minutes d'Aix-en-Provence, pensé pour le mouvement, le souffle et les moments pour soi. Cours en petits groupes, tous niveaux.</p>
         <a class="f-insta" href="https://www.instagram.com/chachapilates/" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -2473,12 +2514,11 @@
 })();
 /* cartes : choix (tarifs bsport du studio) + achat dans une fenêtre */
 (function(){
-  var PACKS={"Reformer": [{"s": "Découverte", "n": "Séance découverte Reformer", "p": 15, "d": "1 séance · valable 1 mois"}, {"s": "Séance", "n": "Séance unique Reformer", "p": 27, "d": "1 séance · valable 1 mois"}, {"s": "Duo", "n": "Carte Duo Reformer", "p": 50, "d": "2 personnes · 25 € par personne · valable 1 mois"}, {"s": "5 séances", "n": "Pack 5 séances Reformer", "p": 130, "d": "26 € la séance · valable 2 mois"}, {"s": "10 séances", "n": "Pack 10 séances Reformer", "p": 250, "d": "25 € la séance · valable 6 mois"}, {"s": "20 séances", "n": "Pack 20 séances Reformer", "p": 480, "d": "24 € la séance · valable 12 mois"}], "Hot Pilates": [{"s": "Découverte", "n": "Séance découverte Hot Pilates", "p": 20, "d": "1 séance · valable 1 mois"}, {"s": "Séance", "n": "Séance unique Hot Pilates", "p": 25, "d": "1 séance · valable 1 mois"}, {"s": "10 séances", "n": "Pack 10 séances Hot Pilates", "p": 230, "d": "23 € la séance · valable 6 mois"}, {"s": "20 séances", "n": "Pack 20 séances Hot Pilates", "p": 400, "d": "20 € la séance · valable 12 mois"}], "Yoga": [{"s": "Découverte", "n": "Séance découverte Yoga", "p": 15, "d": "1 séance · valable 1 mois"}, {"s": "Séance", "n": "Séance unique Yoga", "p": 20, "d": "1 séance · valable 1 mois"}, {"s": "10 séances", "n": "Pack 10 séances Yoga", "p": 170, "d": "17 € la séance · valable 6 mois"}, {"s": "20 séances", "n": "Pack 20 séances Yoga", "p": 300, "d": "15 € la séance · valable 12 mois"}], "Stretching": [{"s": "Découverte", "n": "Séance découverte Stretching", "p": 15, "d": "1 séance · valable 1 mois"}, {"s": "Séance", "n": "Séance unique Stretching", "p": 20, "d": "1 séance · valable 1 mois"}]};
+  var PACKS={"Reformer": [{"s": "Découverte", "n": "Séance découverte Reformer", "m": "découverte"}, {"s": "Séance", "n": "Séance unique Reformer", "m": "unique"}, {"s": "Duo", "n": "Carte Duo Reformer", "m": "duo"}, {"s": "5 séances", "n": "Pack 5 séances Reformer", "m": "pack 5 "}, {"s": "10 séances", "n": "Pack 10 séances Reformer", "m": "pack 10 "}, {"s": "20 séances", "n": "Pack 20 séances Reformer", "m": "pack 20 "}], "Hot Pilates": [{"s": "Découverte", "n": "Séance découverte Hot Pilates", "m": "découverte"}, {"s": "Séance", "n": "Séance unique Hot Pilates", "m": "unique"}, {"s": "10 séances", "n": "Pack 10 séances Hot Pilates", "m": "pack 10 "}, {"s": "20 séances", "n": "Pack 20 séances Hot Pilates", "m": "pack 20 "}], "Yoga": [{"s": "Découverte", "n": "Séance découverte Yoga", "m": "découverte"}, {"s": "Séance", "n": "Séance unique Yoga", "m": "unique"}, {"s": "10 séances", "n": "Pack 10 séances Yoga", "m": "pack 10 "}, {"s": "20 séances", "n": "Pack 20 séances Yoga", "m": "pack 20 "}], "Stretching": [{"s": "Découverte", "n": "Séance découverte Stretching", "m": "découverte"}, {"s": "Séance", "n": "Séance unique Stretching", "m": "unique"}]};
   var s=document.getElementById('gift-card'); if(!s) return;
   var acts=s.querySelector('[data-gc-acts]'), packs=s.querySelector('[data-gc-packs]'), detail=s.querySelector('[data-gc-detail]');
   var val=s.querySelector('[data-gc-value]'), cap=s.querySelector('[data-gc-caption]');
   var cur={a:'Reformer', i:4};
-  function eur(n){ return n+' €'; }
   function renderActs(){
     acts.innerHTML='';
     Object.keys(PACKS).forEach(function(k){
@@ -2492,16 +2532,16 @@
     packs.innerHTML='';
     PACKS[cur.a].forEach(function(p,i){
       var b=document.createElement('button'); b.type='button'; b.setAttribute('role','radio'); b.setAttribute('aria-checked', i===cur.i);
-      b.innerHTML='<span>'+p.s+'</span><b>'+eur(p.p)+'</b>';
+      b.innerHTML='<b>'+p.s+'</b>';
       b.addEventListener('click',function(){ cur.i=i; render(true); });
       packs.appendChild(b);
     });
   }
   function show(){
     var p=PACKS[cur.a][cur.i];
-    detail.innerHTML='<b>'+p.n+'</b> · '+p.d;
+    detail.innerHTML='Prix et validité à jour dans la boutique. <b>Étudiant·e : −10 %</b> avec votre code promo.';
     val.classList.add('swap');
-    setTimeout(function(){ val.textContent=eur(p.p); cap.textContent=p.n; val.classList.remove('swap'); },200);
+    setTimeout(function(){ val.textContent=p.s; val.classList.toggle('free', p.s.length>7); cap.textContent=p.n; val.classList.remove('swap'); },200);
   }
   function render(onlyPacks){ if(!onlyPacks) renderActs(); renderPacks(); show(); }
   render();
@@ -2523,12 +2563,12 @@
   function focusPack(p, act, n){
     n=n||0; if(n>60) return;
     var root=document.getElementById('bsport-widget-pass'), body=pop.querySelector('.pk__body');
-    var price=p.p.toFixed(2)+' €', key=KEYS[act], hit=null;
+    var key=KEYS[act], hit=null;
     root.querySelectorAll('.bs-pass-card').forEach(function(c){
       if(hit) return;
       var t=c.querySelector('.bs-paymentpack-card__title'); if(!t) return;
-      var title=t.textContent.toLowerCase(), txt=c.textContent.replace(/\s+/g,' ');
-      if(title.indexOf(key)>-1 && txt.indexOf(price)>-1) hit=c;
+      var title=' '+t.textContent.toLowerCase().replace(/\s+/g,' ')+' ';
+      if(title.indexOf(key)>-1 && title.indexOf(p.m)>-1) hit=c;
     });
     if(!hit) return setTimeout(function(){ focusPack(p, act, n+1); },250);
     root.querySelectorAll('.pk-hit').forEach(function(e){ e.classList.remove('pk-hit'); });
@@ -2537,7 +2577,7 @@
   }
   function open(all){
     var p=PACKS[cur.a][cur.i];
-    choice.innerHTML = all ? '' : 'Votre choix : <b>'+p.n+' · '+eur(p.p)+'</b>. Retrouvez-la ci-dessous dans la catégorie '+cur.a+'.';
+    choice.innerHTML = (all ? '' : 'Votre choix : <b>'+p.n+'</b>, mise en avant ci-dessous. ')+'Étudiant·e ? <b>−10 %</b> avec votre code promo, <a href="mailto:chachapilates@gmail.com?subject=Code%20promo%20%C3%A9tudiant&body=Bonjour%2C%0A%0AJe%20suis%20%C3%A9tudiant%C2%B7e%20et%20j%27aimerais%20recevoir%20le%20code%20promo%20de%2010%20%25.%0A%0AMerci%20!">à demander par e-mail</a>.';
     last=document.activeElement; ensure(); if(!all) focusPack(p, cur.a);
     pop.classList.add('open'); pop.setAttribute('aria-hidden','false'); document.body.classList.add('modal-lock');
     setTimeout(function(){ pop.querySelector('.pk__box').focus({preventScroll:true}); },350);
@@ -2577,6 +2617,14 @@
   pop.addEventListener('click',function(e){ if(e.target===pop) close(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && pop.classList.contains('open')) close(); });
   window.chachaOffre=open; /* pour tester : chachaOffre() dans la console */
+})();
+</script>
+<script>
+/* bandeau étudiant : masquable, mémorisé pour la session */
+(function(){
+  var b=document.getElementById('promo-etudiant'); if(!b) return;
+  try{ if(sessionStorage.getItem('chacha-promo-off')==='1') b.classList.add('hide'); }catch(e){}
+  b.querySelector('[data-promo-close]').addEventListener('click',function(){ b.classList.add('hide'); try{ sessionStorage.setItem('chacha-promo-off','1'); }catch(e){} });
 })();
 </script>
 </body>
